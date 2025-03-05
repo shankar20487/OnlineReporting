@@ -40,7 +40,15 @@ Playwright will download the browsers needed as well as create the following fil
 #### faker-js plugin for test data generation
 - npm install @faker-js/faker --save-dev
 
-
+##sample .env file
+USER_NAME_API=dhouglas.oliveira@fullsteam.com
+PASSWORD_API=Dl@212121
+DB_USER=EZ1
+DB_SERVER= 10.2.1.4
+DB_NAME=EZData_Demo_Company_Andrew
+DB_PASSWORD=H@ppysumm2r
+DB_PORT=1433
+EXPIRED_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI4IiwidW5pcXVlX25hbWUiOiJEaG91Z2xhcyIsImVtYWlsIjoiZGhvdWdsYXMub2xpdmVpcmFAZnVsbHN0ZWFtLmNvbSIsInJvbGUiOiJBZG1pbmlzdHJhdG9yLE1hbmFnZVBhdGllbnRTdGF0ZW1lbnRzLE1hbmFnZURhdGFFbnRyeUxpYnJhcmllcyxBZGRFZGl0QW5kRGVsZXRlUGF5bWVudHNBbmRBZGp1c3RtZW50cyxVbmxvY2tQYXRpZW50cyxNYW5hZ2VBZGRPblNlcnZpY2VzLFZpZXdEZWZhdWx0IiwiQ29tcGFueUZpbGVJZCI6IjEiLCJEYXRhYmFzZU5hbWUiOiJFWkRhdGFfRGVtb19Db21wYW55X0FuZHJldyIsIkV4dGVybmFsSWQiOiJjYzA4M2IxMy1jNTkwLTRmZTctMTk1Yy0wOGRhYTU3NzM0MDQiLCJuYmYiOjE3NDA5ODE1NDAsImV4cCI6MTc0MDk4NTE0MCwiaWF0IjoxNzQwOTgxNTQwLCJpc3MiOiItIiwiYXVkIjoiLSJ9.d7SLlSdxKR5-CWVUC4WwBQgcXhGImSjYlK903GS6j4A
 
 ### And check out the following files:
   - .\tests\accountreceivableapi.spec.ts - Example of ui testing of Reporting framework
