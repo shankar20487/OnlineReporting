@@ -1,0 +1,9 @@
+{
+    "db": {
+      "DB_USER": "EZ1",
+      "DB_SERVER": "10.2.1.4",
+      "DB_NAME": "EZData_Demo_Company_Andrew",
+      "DB_PASSWORD": "H@ppysumm2r",
+      "port": 1433
+    }
+  }
