@@ -1,0 +1,37 @@
+{
+    "reportName": "accountReceivable",
+    "reportParameters": {
+      "fromDate": "01/01/2025",
+      "toDate": "01/30/2025",
+      "agingAsOfDate": "",
+      "groupBy": "None",
+      "calculateAgingByDos": false,
+      "hideDetail": false,
+      "claimPrimaryPayer": [
+        "All"
+      ],
+      "claimRenderingProvider": [
+        "All"
+      ],
+      "claimStatus": [
+        "Ready to submit",
+        "Submitted",
+        "On Hold",
+        "Other"
+      ],
+      "patient": [],
+      "acctStartWith": "",
+      "activeStatus": "All",
+      "responsibleParty": "All",
+      "serviceDateStart": "",
+      "serviceDateEnd": "",
+      "patientClassification": "all",
+      "userId": "1011231",
+      "userGroupId": null,
+      "dateFilter": "createdOn"
+    },
+    "sortBy": "patientName",
+    "groupBy": "none",
+    "startIndex": null
+  }
+  
