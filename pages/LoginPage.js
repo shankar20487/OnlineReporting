@@ -13,14 +13,14 @@ exports.LoginPage = class LoginPage {
         this.page = page;
 
         // Elements
-        this.userName = page.locator('id=Username_I')
-        this.password = page.locator('id=Password_I')
-        this.loginBtn = page.locator('id=submitButton')
-        this.homeLogo = page.locator('id=breadcrumbCompanyFilePopupTargetElement')
+        this.userName = page.locator("//input[@type='email']")
+        this.password = page.locator("//input[@type='password']")
+        this.loginBtn = page.locator("//button[@type='submit']")
+        this.homeLogo = page.getByRole('img', { name: 'EzClaim Logo' })
     }
 
     async goto(){
-        await this.page.setViewportSize({width:1366, height:728})
+        await this.page.setViewportSize({width: 1920, height: 1080})
         await this.page.goto(process.env.URL);
     }
 
@@ -30,7 +30,7 @@ exports.LoginPage = class LoginPage {
         await this.password.fill(param2);
         await this.loginBtn.click();
         await this.homeLogo.waitFor({state:'visible', timeout: 10000});
-        await expect(this.homeLogo).toHaveText('Andrew');
+        
     }
 
 }

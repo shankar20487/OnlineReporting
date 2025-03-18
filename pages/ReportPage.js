@@ -13,15 +13,13 @@ exports.ReportPage = class ReportPage {
         this.page = page;
 
         // Elements
-        this.filterReportTextbox = page.locator('//*[@id="gridview_Reports_DXFREditorcol1"]//input[@type="text"]');
-        this.specificReport = page.locator('//*[@id="gridview_Reports_DXMainTable"]/tbody/tr[2]/td');
+        this.reportDropdown = page.locator('path')
+        
     }
 
     async clickOnSpecificReport(reportName) {
-        await this.filterReportTextbox.fill(reportName);
-        await this.page.keyboard.press('Enter');
-        await this.page.waitForTimeout(2000);
-        await this.specificReport.click();
+        await this.reportDropdown.click();
+        await this.page.getByRole('option', { name: reportName }).click();
     }
 
 }

@@ -12,14 +12,15 @@ exports.HomePage = class HomePage {
         // Init page object
         this.page = page;
 
-        
-        // Elements
-        this.analyticsOption = page.locator('//*[@id="leftNavbar_GR3"]//div[@id="leftNavbar_GHC3"]');
-        this.reportOption = page.locator('//*[@id="leftNavbar_GC3"]//li[@title="Reports"]');
+       // Elements
+        this.homeLogo = page.getByRole('img', { name: 'EzClaim Logo' })
+        this.analyticsOption = page.getByRole('button', { name: 'Analytics' })
+        this.reportOption =   page.locator('a')
     }
 
     async goToReportSection(){
         await this.page.waitForTimeout(2000);
+        await this.homeLogo.isVisible();
         await this.analyticsOption.click();
         await this.reportOption.click();
     }
