@@ -19,7 +19,7 @@ class Database {
       database: process.env.DB_NAME,
       port: parseInt(process.env.DB_PORT) || 1433,
       options: {
-        encrypt: true, // Use encryption for Azure SQL
+        encrypt: false, // Use encryption for Azure SQL
         trustServerCertificate: true, // Use for local development
       }
     });
