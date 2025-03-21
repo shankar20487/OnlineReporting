@@ -72,10 +72,58 @@ export default class GenerateReportEndpoint {
              return payload;
             }
 
-        }
     
-    
-   
-    
+        async  generatePatientLedgerPayload(patients,startDate,endData,sortby="",acctStartsWith='',patientClassification=''){
+            let payload
+            if(patients=== 1){
+                payload ={
+                    "reportId": this.reportName,
+                    "options": {
+                        "acctStartsWith": acctStartsWith ||"",
+                        "patient": "",
+                        "patientClassification": [patientClassification] || "",
+                        "dateOfService": {
+                            "startDate": startDate,
+                            "endDate": endData
+                        },
+                            "sortby": sortby || ""
+                    }
+             }
 
+            }
+            else if(patients === 2){
+                payload ={
+                    "reportId": this.reportName,
+                    "options": {
+                        "acctStartsWith": acctStartsWith ||"",
+                        "patient": [5685,14975],
+                        "patientClassification": [patientClassification] || "",
+                        "dateOfService": {
+                            "startDate": startDate,
+                            "endDate": endData
+                        },
+                            "sortby": sortby || ""
+                    }
+             }
+            }
+            else{
+                payload ={
+                    "reportId": this.reportName,
+                    "options": {
+                        "acctStartsWith": acctStartsWith ||"",
+                        "patient": [patients],
+                        "patientClassification": [patientClassification] || "",
+                        "dateOfService": {
+                            "startDate": startDate,
+                            "endDate": endData
+                        },
+                            "sortby": sortby || ""
+                    }
+        }
+            }
+            
+                return payload;
+        }
+
+}
 

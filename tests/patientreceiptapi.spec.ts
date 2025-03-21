@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import GenerateReportEndpoint from '../api_requests/GenerateReportEndpoint';
 import db from '../utils/Database';
 import endpoint from '../config/endpoint';
-import fiteringApiTestData from '../test-data/api-requests/filteringApiTestData.json'
+import patientReceipt from '../test-data/api-requests/patientreceipt.json'
 import apivalidation from '../utils/ApiValidator';
 import * as fs from 'fs';
 
@@ -30,11 +30,15 @@ test.beforeAll(async ({ request }) => {
 test('Validation of Patient receipts Api for Particular patient', async ({},testInfo) => {
      await test.step('Patient receipts Api sucessful case and response validation', async () => {
         const url =`${endpoint.baseUrl}`;
-        const startDate ='2015-01-31'
-        const endDate = '2025-01-31'
+        const startDate = patientReceipt.testcase1.startDate;
+        const endDate = patientReceipt.testcase1.endDate;
+        const patientId = patientReceipt.testcase1.patientId;
+        const phyId = patientReceipt.testcase1.phyId;
+        const phyAddress = patientReceipt.testcase1.phyAddress;
+        const paymentMethod = patientReceipt.testcase1.paymentMethod;
         const apiEndpoint = new GenerateReportEndpoint(url,'EZR-15');
         const header = { "Authorization": `Bearer ${authToken}`}
-        const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate,endDate,14975);
+        const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate,endDate,patientId);
         console.log(payload);
         const apiResponse = await apiEndpoint.generateReportApi(header,payload);
         const responseBody= await apiResponse.json();
@@ -48,20 +52,18 @@ test('Validation of Patient receipts Api for Particular patient', async ({},test
         }); 
 
         //validate the json schema
-        //const rawData = fs.readFileSync('schema/patientSchema.json', 'utf-8');
-        //const jsonSchema = JSON.parse(rawData); 
-        //const validator = new apivalidation();
-        //const isValid = await validator.validateResponse(jsonSchema,responseBody);
+        const rawData = fs.readFileSync('schema/patientreceiptSchema.json', 'utf-8');
+        const jsonSchema = JSON.parse(rawData); 
+        const validator = new apivalidation();
+        const isValid = await validator.validateResponse(jsonSchema,responseBody);
 
        
         expect(apiResponse.status).toBe(200);
-        expect(responseBody.Data.dataObject[0].phyId).toBe(6);
-        expect(responseBody.Data.dataObject[0].phyAddress).toBe(`100 MAIN STREET SUITE 200 ROCHESTER, MI 555554444`);
-        expect(responseBody.Data.dataObject[0].ledgers[0].paymentMethod).toBe("Mastercard")
-
-        
-        //expect(isValid).toBe(true);
-
+        expect(responseBody.Data.dataObject[0].phyId).toBe(phyId);
+        expect(responseBody.Data.dataObject[0].phyAddress).toBe(phyAddress);
+        expect(responseBody.Data.dataObject[0].receipts[0].paymentMethod).toBe(paymentMethod);
+        expect(responseBody.Data.dataObject).toHaveLength(1);
+        expect(isValid).toBe(true);
         
     });
 })
@@ -69,9 +71,10 @@ test('Validation of Patient receipts Api for Particular patient', async ({},test
 test('Validation of Patient Pay receipts Api Without passing start date ,End date and patientID', async ({},testInfo) => {
    await test.step(' Patient Pay receipts sucessful case and response validation', async () => {
        const url =`${endpoint.baseUrl}`;
-       const startDate ='2015-01-31'
-       const endDate = '2025-01-31'
-       const apiEndpoint = new GenerateReportEndpoint(url,'EZR-15');
+       const phyName = patientReceipt.testcase2.PhyName;
+        const patientName = patientReceipt.testcase2.patientName;
+        const paymentAmount = patientReceipt.testcase2.paymentAmount;
+        const apiEndpoint = new GenerateReportEndpoint(url,'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}`}
        const payload = await apiEndpoint.generateEzClaimPayReceiptPayload('','');
        console.log(payload);
@@ -86,20 +89,24 @@ test('Validation of Patient Pay receipts Api Without passing start date ,End dat
        }); 
 
        expect(apiResponse.status).toBe(200);
-       expect(responseBody.Data.dataObject[0].phyName).toBe(`Nurse Easy`);
-       expect(responseBody.Data.dataObject[0].patientName).toBe("Westen, Michael")
-       expect(responseBody.Data.dataObject[0].ledgers[0].paymentAmount).toBe(55)
+       expect(responseBody.Data.dataObject[0].phyName).toBe(phyName);
+       expect(responseBody.Data.dataObject[0].patientName).toBe(patientName)
+       expect(responseBody.Data.dataObject[0].receipts[0].paymentAmount).toBe(paymentAmount)
    });
 })
 
 test('Validation of Patient Pay receipts Api With particular patientID and start and end date', async ({}, testInfo) => {
    await test.step('Patient Pay receipts sucessful case and response validation', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '2021-01-31';
-       const endDate = '2025-01-31';
+       const startDate = patientReceipt.testcase3.startDate;
+       const endDate = patientReceipt.testcase3.endDate;
+       const patientId = patientReceipt.testcase3.patientId;
+       const phyName = patientReceipt.testcase3.PhyName;
+       const phyAddress = patientReceipt.testcase3.phyAddress;
+       const amount = patientReceipt.testcase3.paymentAmount;   
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
-       const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, 14975);
+       const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId);
        console.log(payload);
        const apiResponse = await apiEndpoint.generateReportApi(header, payload);
        const responseBody = await apiResponse.json();
@@ -112,21 +119,24 @@ test('Validation of Patient Pay receipts Api With particular patientID and start
        }); 
 
        expect(apiResponse.status).toBe(200);
-       expect(responseBody.Data.dataObject[0].phyName).toBe(`HEALTH CLINIC `);
-       expect(responseBody.Data.dataObject[0].phyAddress).toBe(`100 MAIN STREET SUITE 200 ROCHESTER, MI 555554444`);
-       expect(responseBody.Data.dataObject[0].ledgers[0].paymentAmount).toBe(124.23);
-       expect(responseBody.Data.dataObject[0].ledgers[0].subLedgers[0].appliedCharges).toBe(124.23);
+       expect(responseBody.Data.dataObject[0].phyName).toBe(phyName);
+       expect(responseBody.Data.dataObject[0].phyAddress).toBe(phyAddress);
+       expect(responseBody.Data.dataObject[0].receipts[0].paymentAmount).toBe(amount);
+     
    });
 })
 
 test('Validation of patient Pay receipts Api With particular Date Range', async ({}, testInfo) => {
    await test.step('patient Pay receipts sucessful case and response validation', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '2024-01-31';
-       const endDate = '2025-01-31';
+       const startDate = patientReceipt.testcase4.startDate;
+       const endDate = patientReceipt.testcase4.endDate;
+       const patientId = patientReceipt.testcase4.patientId;
+       const phyName = patientReceipt.testcase4.PhyName;
+       const phyadd = patientReceipt.testcase4.phyAddress;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
-       const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, 5685);
+       const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId);
        console.log(payload);
        const apiResponse = await apiEndpoint.generateReportApi(header, payload);
        const responseBody = await apiResponse.json();
@@ -139,9 +149,9 @@ test('Validation of patient Pay receipts Api With particular Date Range', async 
        }); 
 
        expect(apiResponse.status).toBe(200);
-       expect(responseBody.Data.dataObject[0].phyName).toBe(`EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM`);
-       expect(responseBody.Data.dataObject[0].phyAddress).toBe(`337 S MAIN STREET  ROCHESTER, MI 48307`);
-       expect(responseBody.Data.dataObject[0].ledgers).toHaveLength(2);
+       expect(responseBody.Data.dataObject[0].phyName).toBe(phyName);
+       expect(responseBody.Data.dataObject[0].phyAddress).toBe(phyadd);
+       expect(responseBody.Data.dataObject[0].receipts).toHaveLength(4);
    });
 })
 
@@ -149,11 +159,15 @@ test('Validation of patient Pay receipts Api With particular Date Range', async 
 test('Validation of Patient Pay receipts Api With payment method Master Card', async ({}, testInfo) => {
    await test.step('Patient Pay receipts sucessful case and response validation', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '2021-01-31';
-       const endDate = '2025-01-31';
+       const startDate = patientReceipt.testcase5.startDate;
+        const endDate = patientReceipt.testcase5.endDate;
+        const patientId = patientReceipt.testcase5.patientId;
+        const phyName= patientReceipt.testcase5.PhyName;
+        const phyAddress = patientReceipt.testcase5.phyAddress;
+        const paymentMethod = patientReceipt.testcase5.paymentMethod;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
-       const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, 5685, "patientName", "Mastercard");
+       const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId, "patientName", paymentMethod);
        console.log(payload);
        const apiResponse = await apiEndpoint.generateReportApi(header, payload);
        const responseBody = await apiResponse.json();
@@ -166,21 +180,25 @@ test('Validation of Patient Pay receipts Api With payment method Master Card', a
        }); 
 
        expect(apiResponse.status).toBe(200);
-       expect(responseBody.Data.dataObject[0].phyName).toBe(`EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM`);
-       expect(responseBody.Data.dataObject[0].phyAddress).toBe(`337 S MAIN STREET  ROCHESTER, MI 48307`);
-       expect(responseBody.Data.dataObject[0].ledgers[0].paymentMethod).toBe("Mastercard");
-       expect(responseBody.Data.dataObject[0].ledgers).toHaveLength(114);
+       expect(responseBody.Data.dataObject[0].phyName).toBe(phyName);
+       expect(responseBody.Data.dataObject[0].phyAddress).toBe(phyAddress);
+       expect(responseBody.Data.dataObject[0].receipts[0].paymentMethod).toBe(paymentMethod);
+       expect(responseBody.Data.dataObject[0].receipts).toHaveLength(229);
    });
 })
 
 test('Validation of Patient Pay receipts Api With payment method Visa', async ({}, testInfo) => {
    await test.step('Patient Pay receipts sucessful case and response validation', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '2021-01-31';
-       const endDate = '2025-01-31';
+       const startDate = patientReceipt.testcase6.startDate;
+       const endDate = patientReceipt.testcase6.endDate;
+       const patientId = patientReceipt.testcase6.patientId;
+       const phyName= patientReceipt.testcase6.PhyName;
+       const phyAddress = patientReceipt.testcase6.phyAddress;
+       const paymentMethod = patientReceipt.testcase6.paymentMethod;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
-       const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, 5685, "patientName", "Visa");
+       const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId, "patientName", paymentMethod);
        console.log(payload);
        const apiResponse = await apiEndpoint.generateReportApi(header, payload);
        const responseBody = await apiResponse.json();
@@ -193,21 +211,25 @@ test('Validation of Patient Pay receipts Api With payment method Visa', async ({
        }); 
 
        expect(apiResponse.status).toBe(200);
-       expect(responseBody.Data.dataObject[0].phyName).toBe(`EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM`);
-       expect(responseBody.Data.dataObject[0].phyAddress).toBe(`337 S MAIN STREET  ROCHESTER, MI 48307`);
-       expect(responseBody.Data.dataObject[0].ledgers[0].paymentMethod).toBe("Visa");
-       expect(responseBody.Data.dataObject[0].ledgers).toHaveLength(1);
+       expect(responseBody.Data.dataObject[0].phyName).toBe(phyName);
+       expect(responseBody.Data.dataObject[0].phyAddress).toBe(phyAddress);
+       expect(responseBody.Data.dataObject[0].receipts[0].paymentMethod).toBe(paymentMethod);
+       expect(responseBody.Data.dataObject[0].receipts).toHaveLength(2);
    });
 })
 
 test('Validation of Patient Pay receipts Api With payment method Cash', async ({}, testInfo) => {
    await test.step('Patient Pay receipts sucessful case and response validation', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '2021-01-31';
-       const endDate = '2025-01-31';
+       const startDate = patientReceipt.testcase7.startDate;
+       const endDate = patientReceipt.testcase7.endDate;
+       const patientId = patientReceipt.testcase7.patientId;
+       const phyName= patientReceipt.testcase7.PhyName;
+       const phyAddress = patientReceipt.testcase7.phyAddress;
+       const paymentMethod = patientReceipt.testcase7.paymentMethod;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
-       const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, 5685, "patientName", "Cash");
+       const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId, "patientName", paymentMethod);
        console.log(payload);
        const apiResponse = await apiEndpoint.generateReportApi(header, payload);
        const responseBody = await apiResponse.json();
@@ -220,19 +242,22 @@ test('Validation of Patient Pay receipts Api With payment method Cash', async ({
        }); 
 
        expect(apiResponse.status).toBe(200);
-       expect(responseBody.Data.dataObject[0].phyName).toBe(`EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM`);
-       expect(responseBody.Data.dataObject[0].phyAddress).toBe(`337 S MAIN STREET  ROCHESTER, MI 48307`);
-       expect(responseBody.Data.dataObject[0].ledgers[0].paymentMethod).toBe("CASH");
-       expect(responseBody.Data.dataObject[0].ledgers).toHaveLength(1);
+       expect(responseBody.Data.dataObject[0].phyName).toBe(phyName);
+       expect(responseBody.Data.dataObject[0].phyAddress).toBe(phyAddress);
+       expect(responseBody.Data.dataObject[0].receipts[0].paymentMethod).toBe(paymentMethod);
+       expect(responseBody.Data.dataObject[0].receipts).toHaveLength(2);
    });
 })
 
 test('Validation of Patient Pay receipts Api With sortBy patientId', async ({}, testInfo) => {
    await test.step('Patient Pay receipts sucessful case and response validation', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '2021-01-31';
-       const endDate = '2025-01-31';
+       const startDate = patientReceipt.testcase8.startDate;
+       const endDate = patientReceipt.testcase8.endDate;
        const patientId = undefined;
+       const patientId1 = patientReceipt.testcase8.patientId1;
+        const patientId2 = patientReceipt.testcase8.patientId2;
+     const patientId3 = patientReceipt.testcase8.patientId3;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
        const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId, "patId", "");
@@ -248,9 +273,9 @@ test('Validation of Patient Pay receipts Api With sortBy patientId', async ({}, 
        }); 
 
        expect(apiResponse.status).toBe(200);
-       expect(responseBody.Data.dataObject[0].patId).toBe(1);
-       expect(responseBody.Data.dataObject[1].patId).toBe(3);
-       expect(responseBody.Data.dataObject[2].patId).toBe(8);
+       expect(responseBody.Data.dataObject[0].patId).toBe(patientId1);
+       expect(responseBody.Data.dataObject[1].patId).toBe(patientId2);
+       expect(responseBody.Data.dataObject[2].patId).toBe(patientId3);
      
    });
 })
@@ -259,8 +284,11 @@ test('Validation of Patient Pay receipts Api With sortBy patientId', async ({}, 
 test('Validation of Patient Pay receipts Api With sortBy patientName,paymentDate', async ({}, testInfo) => {
    await test.step('Ezclaim Pay receipts sucessful case and response validation', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '2021-01-31';
-       const endDate = '2025-01-31';
+       const startDate = patientReceipt.testcase9.startDate;
+       const endDate = patientReceipt.testcase9.endDate;
+       const patientId1 = patientReceipt.testcase9.patientId1;
+       const patientId2 = patientReceipt.testcase9.patientId2;
+       const amount = patientReceipt.testcase9.paymentAmount;
        const patientId = undefined;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
@@ -277,9 +305,9 @@ test('Validation of Patient Pay receipts Api With sortBy patientName,paymentDate
        }); 
 
        expect(apiResponse.status).toBe(200);
-       expect(responseBody.Data.dataObject[0].patId).toBe(5685)
-       expect(responseBody.Data.dataObject[1].patId).toBe(16439)
-       expect(responseBody.Data.dataObject[0].ledgers[0].paymentAmount).toBe(203)
+       expect(responseBody.Data.dataObject[0].patId).toBe(patientId1)
+       expect(responseBody.Data.dataObject[1].patId).toBe(patientId2)
+       expect(responseBody.Data.dataObject[0].receipts[0].paymentAmount).toBe(amount)
       
    });
 });
@@ -302,6 +330,8 @@ test('Validation of Patient Pay receipts Api for Multiple patients', async ({}, 
            }
        };
        console.log(payload);
+       const phyName= patientReceipt.testcase10.PhyName;
+       const phyAddress = patientReceipt.testcase10.phyAddress;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-8');
        const header = { "Authorization": `Bearer ${authToken}` };
        const apiResponse = await apiEndpoint.generateReportApi(header, payload);
@@ -315,8 +345,8 @@ test('Validation of Patient Pay receipts Api for Multiple patients', async ({}, 
        }); 
 
        expect(apiResponse.status).toBe(200);
-       expect(responseBody.Data.dataObject[0].phyName).toBe(`EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM`);
-       expect(responseBody.Data.dataObject[0].phyAddress).toBe(`337 S MAIN STREET  ROCHESTER, MI 48307`);
+       expect(responseBody.Data.dataObject[0].phyName).toBe(phyName);
+       expect(responseBody.Data.dataObject[0].phyAddress).toBe(phyAddress);
 
    });
 })
@@ -324,11 +354,12 @@ test('Validation of Patient Pay receipts Api for Multiple patients', async ({}, 
 test('Validation of Patient Pay receipts Api With Aditional Payment Reference', async ({}, testInfo) => {
    await test.step('Patient Pay receipts sucessful case and response validation', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '2021-01-31';
-       const endDate = '2025-01-31';
-       const patientId = 5685;
-       const transactionID = "2149708444";
-       const lastFourDigit = "...";
+       const startDate = patientReceipt.testcase12.startDate;
+       const endDate = patientReceipt.testcase12.endDate;
+       const patientId = patientReceipt.testcase12.patientId;
+       const paymentMethod = patientReceipt.testcase12.paymentMethod;
+       const lastFourDigit = patientReceipt.testcase12.lastFourDigit;
+       const phyId= patientReceipt.testcase12.phyId;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
        const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId, "patientName", "", "", lastFourDigit);
@@ -345,8 +376,8 @@ test('Validation of Patient Pay receipts Api With Aditional Payment Reference', 
 
 
        expect(apiResponse.status).toBe(200);
-       expect(responseBody.Data.dataObject[0].phyId).toBe(66);
-       expect(responseBody.Data.dataObject[0].ledgers[0].paymentMethod).toBe("Mastercard");
+       expect(responseBody.Data.dataObject[0].phyId).toBe(phyId);
+       expect(responseBody.Data.dataObject[0].receipts[0].paymentMethod).toBe(paymentMethod);
     
    });
 })
@@ -354,13 +385,14 @@ test('Validation of Patient Pay receipts Api With Aditional Payment Reference', 
 test('Validation of Patient receipts Api With Payment Ref', async ({}, testInfo) => {
    await test.step('Patient Pay receipts sucessful case and response validation', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '2021-01-31';
-       const endDate = '2025-01-31';
-       const patientId = 5685;
-       const transactionID = "2149708444";
+       const startDate = patientReceipt.testcase13.startDate;
+        const endDate = patientReceipt.testcase13.endDate;
+        const patientId = patientReceipt.testcase13.patientId;
+        const transactionId = patientReceipt.testcase13.transactionID;
+        const phyId = patientReceipt.testcase13.phyId;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
-       const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId, "patientName", "", transactionID);
+       const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId, "patientName", "", transactionId);
        console.log(payload);
        const apiResponse = await apiEndpoint.generateReportApi(header, payload);
        const responseBody = await apiResponse.json();
@@ -373,8 +405,8 @@ test('Validation of Patient receipts Api With Payment Ref', async ({}, testInfo)
        }); 
 
        expect(apiResponse.status).toBe(200);
-       expect(responseBody.Data.dataObject[0].phyId).toBe(66);
-       expect(responseBody.Data.dataObject[0].ledgers[0].reff).toContain(transactionID);
+       expect(responseBody.Data.dataObject[0].phyId).toBe(phyId);
+       expect(responseBody.Data.dataObject[0].receipts[0].reff).toContain(transactionId);
    });
 })
 
@@ -382,9 +414,13 @@ test('Validation of Patient receipts Api With Payment Ref', async ({}, testInfo)
 test('Validation of Patient Pay receipts Api Without passing the end date', async ({}, testInfo) => {
    await test.step('patient Pay receipts Successful case and response validation', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '2021-01-31';
-       const endDate = '';
-       const patientId = 14975;
+       const startDate = patientReceipt.testcase14.startDate;
+       const endDate = patientReceipt.testcase14.endDate;
+       const patientId = patientReceipt.testcase14.patientId;
+       const paymentMethod = patientReceipt.testcase14.paymentMethod;
+       const phyId = patientReceipt.testcase14.phyId;
+       const amount = patientReceipt.testcase14.amount;
+       const phyadd = patientReceipt.testcase14.phyAddress;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
        const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId, "patientName", "");
@@ -400,20 +436,23 @@ test('Validation of Patient Pay receipts Api Without passing the end date', asyn
        }); 
 
        expect(apiResponse.status).toBe(200);
-       expect(responseBody.Data.dataObject[0].phyName).toBe(`HEALTH CLINIC `);
-       expect(responseBody.Data.dataObject[0].phyAddress).toBe(`100 MAIN STREET SUITE 200 ROCHESTER, MI 555554444`);
-       expect(responseBody.Data.dataObject[0].ledgers[0].paymentMethod).toBe("Mastercard");
-       expect(responseBody.Data.dataObject[0].totalPayment).toBe(124.23);
-       expect(responseBody.Data.dataObject[0].ledgers[0].paymentAmount).toBe(124.23);
-   });
+       expect(responseBody.Data.dataObject[0].phyId).toBe(phyId);
+       expect(responseBody.Data.dataObject[0].phyAddress).toBe(phyadd);
+       expect(responseBody.Data.dataObject[0].receipts[0].paymentMethod).toBe(paymentMethod);
+       expect(responseBody.Data.dataObject[0].totalPayment).toBe(amount);
+      
+   });  
 })
 
 test('Validation of Patient Pay receipts Api Without passing the start date', async ({}, testInfo) => {
    await test.step('Patient Pay receipts sucessful case and response validation', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '';
-       const endDate = '2025-03-31';
-       const patientId = 14975;
+       const startDate = patientReceipt.testcase15.startDate;
+       const endDate = patientReceipt.testcase15.endDate;
+       const patientId = patientReceipt.testcase15.patientId;
+       const phyName= patientReceipt.testcase15.PhyName; 
+       const paymentMethod = patientReceipt.testcase15.paymentMethod;
+       const amount = patientReceipt.testcase15.amount;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
        const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId, "patientName", "");
@@ -429,10 +468,9 @@ test('Validation of Patient Pay receipts Api Without passing the start date', as
        }); 
 
        expect(apiResponse.status).toBe(200);
-       expect(responseBody.Data.dataObject[0].phyName).toBe(`HEALTH CLINIC `);
-       expect(responseBody.Data.dataObject[0].phyAddress).toBe(`100 MAIN STREET SUITE 200 ROCHESTER, MI 555554444`);
-       expect(responseBody.Data.dataObject[0].ledgers[0].paymentMethod).toBe("Mastercard");
-       expect(responseBody.Data.dataObject[0].ledgers[0].paymentAmount).toBe(124.23);
+       expect(responseBody.Data.dataObject[0].phyName).toBe(phyName);
+       expect(responseBody.Data.dataObject[0].receipts[0].paymentMethod).toBe(paymentMethod);
+       expect(responseBody.Data.dataObject[0].receipts[0].paymentAmount).toBe(amount);
        
        //expect(isValid).toBe(true);
    });
@@ -441,9 +479,9 @@ test('Validation of Patient Pay receipts Api Without passing the start date', as
 test('Validation of Patient Pay receipts Api While wrong sortby parameter', async ({}, testInfo) => {
    await test.step('Patient Pay receipts Negative case', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '';
-       const endDate = '2025-03-31';
-       const patientId = 14975;
+       const startDate = patientReceipt.testcase16.startDate;
+       const endDate = patientReceipt.testcase16.endDate;
+       const patientId = patientReceipt.testcase16.patientId;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
        const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId, "patient", "");
@@ -465,9 +503,9 @@ test('Validation of Patient Pay receipts Api While wrong sortby parameter', asyn
 test('Validation of Patient Pay receipts Api While patients Not Present', async ({}, testInfo) => {
    await test.step('Patient Pay receipts Negative case', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '';
-       const endDate = '2025-03-31';
-       const patientId = 12345;
+       const startDate = patientReceipt.testcase17.startDate;
+       const endDate = patientReceipt.testcase17.endDate;
+       const patientId = patientReceipt.testcase17.patientId;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
        const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId, "patientName", "");
@@ -489,9 +527,9 @@ test('Validation of Patient Pay receipts Api While patients Not Present', async 
 test('Validation of Patient Pay receipts Api While passing the wrong start date', async ({}, testInfo) => {
    await test.step('Patient Pay receipts Successful case and response validation', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '2021';
-       const endDate = '';
-       const patientId = 14975;
+       const startDate = patientReceipt.testcase18.startDate;
+       const endDate = patientReceipt.testcase18.endDate;
+       const patientId = patientReceipt.testcase18.patientId;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
        const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId, "patientName", "");
@@ -513,9 +551,9 @@ test('Validation of Patient Pay receipts Api While passing the wrong start date'
 test('Validation of Patient Pay receipts Api While passing the wrong end date', async ({}, testInfo) => {
    await test.step('Patient Pay receipts Successful case and response validation', async () => {
        const url = `${endpoint.baseUrl}`;
-       const startDate = '2021-01-20';
-       const endDate = '2022';
-       const patientId = 14975;
+       const startDate = patientReceipt.testcase19.startDate;
+       const endDate = patientReceipt.testcase19.endDate;
+       const patientId = patientReceipt.testcase19.patientId;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
        const payload = await apiEndpoint.generateEzClaimPayReceiptPayload(startDate, endDate, patientId, "patientName", "");

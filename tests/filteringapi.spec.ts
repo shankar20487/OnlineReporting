@@ -103,10 +103,11 @@ test('Validation of Filter Api for Payers', async ({}, testInfo) => {
     if (payerData.length > 0) {
       payer = payerData[0];
     }
-
+    const payInactive = `${payer.payInactive}`;
+    const bool = payInactive.toLowerCase() === "true";
     expect(apiResponse.status).toBe(200);
     expect(responseBody.Data.dataObject[0].payName).toBe(`${payer.PayName}`);
-    expect(responseBody.Data.dataObject[0].payInactive).toBe(`${payer.PayInactive}`);
+    expect(responseBody.Data.dataObject[0].payInactive).toBe(bool);
     expect(isValid).toBe(true);
   });
 });

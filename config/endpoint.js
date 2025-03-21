@@ -19,6 +19,7 @@ const config = {
     endpoints: {
       login: "/api/auth/login",
       filteringapi: "/api/v2/Reports/FilterList",
+      generatereport:"/api/v2/Reports/GenerateReports",
      }
   };
 
