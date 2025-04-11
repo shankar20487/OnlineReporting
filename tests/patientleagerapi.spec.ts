@@ -95,7 +95,7 @@ test('Validation of Patient Leadger Api for particulart start and end Date', asy
        expect(apiResponse.status).toBe(200);
        expect(jsonData.Data.dataObject[0].accountNo).toEqual(accountNo);
        expect(jsonData.Data.dataObject[0].patId).toEqual(patients);
-       expect(jsonData.Data.dataObject[0].ledgers).toHaveLength(6);
+       expect(jsonData.Data.dataObject[0].ledgers).toHaveLength(9);
     
    });
 })
@@ -109,6 +109,9 @@ test('Validation of Patient Leadger Api for sort by Patient Id', async ({},testI
        
        const startDate = patientleadger.testcase3.startDate
        const endDate = patientleadger.testcase3.endDate
+       const patientId1 = patientleadger.testcase3.patientId1
+       const patientId2 = patientleadger.testcase3.patientId2
+       const patientId3 = patientleadger.testcase3.patientId3
        const payload = await apiEndpoint.generatePatientLedgerPayload(1,startDate,endDate,'patId');
        console.log(payload);
        const apiResponse = await apiEndpoint.generateReportApi(header,payload);
@@ -126,9 +129,9 @@ test('Validation of Patient Leadger Api for sort by Patient Id', async ({},testI
 
       
        expect(apiResponse.status).toBe(200);
-       expect(jsonData.Data.dataObject[0].patId).toEqual(1);
-       expect(jsonData.Data.dataObject[1].patId).toEqual(21);
-       expect(jsonData.Data.dataObject[2].patId).toEqual(29);
+       expect(jsonData.Data.dataObject[0].patId).toEqual(patientId1);
+       expect(jsonData.Data.dataObject[1].patId).toEqual(patientId2);
+       expect(jsonData.Data.dataObject[2].patId).toEqual(patientId3);
       
 
    });

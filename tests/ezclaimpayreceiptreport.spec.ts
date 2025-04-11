@@ -4,8 +4,16 @@ import { HomePage } from '../pages/HomePage';
 import { ReportPage } from '../pages/ReportPage';
 import { EzclaimPayReportPage } from '../pages/EzclaimPayReportPage';
 
+const reportName = "EZClaim Pay Receipt";
+test.beforeEach('Running before Each test',async ({page}) => {
+    const loginpage = new LoginPage(page);
+    const homepage = new HomePage(page);
+    const userName = process.env.USER_NAME;
+    const pasword = process.env.PASSWORD;
+    await loginpage.goto();
+    await loginpage.login(userName,pasword);
+    await homepage.changeCompanyProfile("Iteris");
 
-test.beforeAll('Running before all tests', () => {
    
 })
 
@@ -16,18 +24,7 @@ test('Validation of search patient in ezclaim Pay Receipt Report ', async ({ pag
     const homepage = new HomePage(page);
     const reportpage = new ReportPage(page);
     const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
-    const userName = process.env.USER_NAME;
-    const pasword = process.env.PASSWORD;
-    const reportName = "EZClaim Pay Receipt";
-   
-    await test.step('Go to URL', async () => {
-        await loginpage.goto();
-    });
 
-    await test.step('Login using credentials', async () => {
-        await loginpage.login(userName,pasword);
-    });
-    
     await test.step('Go to report Section', async () => {
         await homepage.goToReportSection();
     });
@@ -50,17 +47,8 @@ test('Validation of search patient Pagination and Cancel Button in ezclaim Pay R
     const homepage = new HomePage(page);
     const reportpage = new ReportPage(page);
     const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
-    const userName = process.env.USER_NAME;
-    const pasword = process.env.PASSWORD;
-    const reportName = "EZClaim Pay Receipt";
-   
-    await test.step('Go to URL', async () => {
-        await loginpage.goto();
-    });
+ 
 
-    await test.step('Login using credentials', async () => {
-        await loginpage.login(userName,pasword);
-    });
     
     await test.step('Go to report Section', async () => {
         await homepage.goToReportSection();
@@ -80,22 +68,9 @@ test('Validation of search patient Pagination and Cancel Button in ezclaim Pay R
 
 
 test('Validation of Report generation and download without filter in ezclaim Pay Receipt Report', async ({ page }) => {
-
-    const loginpage = new LoginPage(page);
     const homepage = new HomePage(page);
     const reportpage = new ReportPage(page);
     const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
-    const userName = process.env.USER_NAME;
-    const pasword = process.env.PASSWORD;
-    const reportName = "EZClaim Pay Receipt";
-   
-    await test.step('Go to URL', async () => {
-        await loginpage.goto();
-    });
-
-    await test.step('Login using credentials', async () => {
-        await loginpage.login(userName,pasword);
-    });
     
     await test.step('Go to report Section', async () => {
         await homepage.goToReportSection();
@@ -110,7 +85,7 @@ test('Validation of Report generation and download without filter in ezclaim Pay
        
     });
 
-    
+ 
     await test.step('Verify the Report is generated and download Properly', async () => {
         await ezclaimpayreceiptpage.VerifySpecificPatientInReportandDownloadToPdf("Andrew, Wagner");
         
@@ -124,18 +99,9 @@ test('Validation of Report generation and download multiple pdfs without filter 
     const homepage = new HomePage(page);
     const reportpage = new ReportPage(page);
     const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
-    const userName = process.env.USER_NAME;
-    const pasword = process.env.PASSWORD;
-    const reportName = "EZClaim Pay Receipt";
    
-    await test.step('Go to URL', async () => {
-        await loginpage.goto();
-    });
-
-    await test.step('Login using credentials', async () => {
-        await loginpage.login(userName,pasword);
-    });
-    
+   
+     
     await test.step('Go to report Section', async () => {
         await homepage.goToReportSection();
     });
@@ -164,18 +130,7 @@ test('Validation of Report generation and few transaction Details in ezclaim Pay
     const homepage = new HomePage(page);
     const reportpage = new ReportPage(page);
     const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
-    const userName = process.env.USER_NAME;
-    const pasword = process.env.PASSWORD;
-    const reportName = "EZClaim Pay Receipt";
-   
-    await test.step('Go to URL', async () => {
-        await loginpage.goto();
-    });
 
-    await test.step('Login using credentials', async () => {
-        await loginpage.login(userName,pasword);
-    });
-    
     await test.step('Go to report Section', async () => {
         await homepage.goToReportSection();
     });
@@ -205,18 +160,7 @@ test('Validation of Report generation and download with filter in ezclaim Pay Re
     const homepage = new HomePage(page);
     const reportpage = new ReportPage(page);
     const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
-    const userName = process.env.USER_NAME;
-    const pasword = process.env.PASSWORD;
-    const reportName = "EZClaim Pay Receipt";
    
-    await test.step('Go to URL', async () => {
-        await loginpage.goto();
-    });
-
-    await test.step('Login using credentials', async () => {
-        await loginpage.login(userName,pasword);
-    });
-    
     await test.step('Go to report Section', async () => {
         await homepage.goToReportSection();
     });
@@ -243,18 +187,7 @@ test('Validation of Report for Specific Period of time the Pay Receipt Report', 
     const homepage = new HomePage(page);
     const reportpage = new ReportPage(page);
     const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
-    const userName = process.env.USER_NAME;
-    const pasword = process.env.PASSWORD;
-    const reportName = "EZClaim Pay Receipt";
-   
-    await test.step('Go to URL', async () => {
-        await loginpage.goto();
-    });
-
-    await test.step('Login using credentials', async () => {
-        await loginpage.login(userName,pasword);
-    });
-    
+  
     await test.step('Go to report Section', async () => {
         await homepage.goToReportSection();
     });
@@ -286,17 +219,7 @@ test('Validation of Report for search Specific transaction based on payment type
     const homepage = new HomePage(page);
     const reportpage = new ReportPage(page);
     const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
-    const userName = process.env.USER_NAME;
-    const pasword = process.env.PASSWORD;
-    const reportName = "EZClaim Pay Receipt";
-   
-    await test.step('Go to URL', async () => {
-        await loginpage.goto();
-    });
-
-    await test.step('Login using credentials', async () => {
-        await loginpage.login(userName,pasword);
-    });
+    
     
     await test.step('Go to report Section', async () => {
         await homepage.goToReportSection();
@@ -316,8 +239,9 @@ test('Validation of Report for search Specific transaction based on payment type
     await test.step('Verify the and transaction Details for the patient', async () => {
         const payment = await ezclaimpayreceiptpage.VerifySpecificTransactionDetailsByPaymentMethod("Andrew, Wagner","MasterCard");
         expect(payment).toEqual("Mastercard");
-        const payment2 = await ezclaimpayreceiptpage.VerifySpecificTransactionDetailsByPaymentMethod("Andrew, Wagner","Cash");
+        const payment2 = await ezclaimpayreceiptpage.VerifySpecificTransactionDetailsByPaymentMethod("Andrew, Wagner","Cash",2);
         expect(payment2).toEqual("CASH");
+        
     });
 })
 
@@ -330,17 +254,7 @@ test('Validation of Report for search Specific transaction based on transactionI
     const homepage = new HomePage(page);
     const reportpage = new ReportPage(page);
     const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
-    const userName = process.env.USER_NAME;
-    const pasword = process.env.PASSWORD;
-    const reportName = "EZClaim Pay Receipt";
-   
-    await test.step('Go to URL', async () => {
-        await loginpage.goto();
-    });
-
-    await test.step('Login using credentials', async () => {
-        await loginpage.login(userName,pasword);
-    });
+  
     
     await test.step('Go to report Section', async () => {
         await homepage.goToReportSection();
@@ -370,18 +284,7 @@ test('Validation of Report for search Specific transaction based on aditionalInf
     const homepage = new HomePage(page);
     const reportpage = new ReportPage(page);
     const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
-    const userName = process.env.USER_NAME;
-    const pasword = process.env.PASSWORD;
-    const reportName = "EZClaim Pay Receipt";
-   
-    await test.step('Go to URL', async () => {
-        await loginpage.goto();
-    });
-
-    await test.step('Login using credentials', async () => {
-        await loginpage.login(userName,pasword);
-    });
-    
+ 
     await test.step('Go to report Section', async () => {
         await homepage.goToReportSection();
     });
@@ -393,12 +296,12 @@ test('Validation of Report for search Specific transaction based on aditionalInf
     await test.step(' Generate Report With Selecting with different Filters', async () => {
         const startDate ='2021-01-01';
         const endDate = '2025-12-31';
-        await ezclaimpayreceiptpage.generateReportSpecificPeriod(startDate,endDate,"","5454");
+        await ezclaimpayreceiptpage.generateReportSpecificPeriod(startDate,endDate,"","...5454");
        
     });
 
     await test.step('Verify the and transaction Details for the patient', async () => {
-        const addInfomation = await ezclaimpayreceiptpage.VerifySpecificTransactionDetailsByAddInfo("Andrew, Wagner","5454");
+        const addInfomation = await ezclaimpayreceiptpage.VerifySpecificTransactionDetailsByAddInfo("Andrew, Wagner","...5454");
         expect(addInfomation).toContain("5454");
     });
 })
@@ -410,18 +313,7 @@ test('Validation of Report for sorting of report columns by name,adress of Ezcla
     const homepage = new HomePage(page);
     const reportpage = new ReportPage(page);
     const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
-    const userName = process.env.USER_NAME;
-    const pasword = process.env.PASSWORD;
-    const reportName = "EZClaim Pay Receipt";
    
-    await test.step('Go to URL', async () => {
-        await loginpage.goto();
-    });
-
-    await test.step('Login using credentials', async () => {
-        await loginpage.login(userName,pasword);
-    });
-    
     await test.step('Go to report Section', async () => {
         await homepage.goToReportSection();
     });
@@ -433,7 +325,7 @@ test('Validation of Report for sorting of report columns by name,adress of Ezcla
     await test.step(' Generate Report With Selecting with different Filters', async () => {
         const startDate ='2021-01-01';
         const endDate = '2025-12-31';
-        await ezclaimpayreceiptpage.generateReportSpecificPeriod(startDate,endDate,"","5454");
+        await ezclaimpayreceiptpage.generateReportSpecificPeriod(startDate,endDate,"","");
        
     });
 
@@ -449,24 +341,14 @@ test('Validation of Report for sorting of report columns by name,adress of Ezcla
      });
 })
 
+
 test('Validation of Report for sorting of report columns by phone,city of Ezclaim Pay Receipt Report', async ({ page }) => {
 
     const loginpage = new LoginPage(page);
     const homepage = new HomePage(page);
     const reportpage = new ReportPage(page);
     const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
-    const userName = process.env.USER_NAME;
-    const pasword = process.env.PASSWORD;
-    const reportName = "EZClaim Pay Receipt";
-   
-    await test.step('Go to URL', async () => {
-        await loginpage.goto();
-    });
-
-    await test.step('Login using credentials', async () => {
-        await loginpage.login(userName,pasword);
-    });
-    
+  
     await test.step('Go to report Section', async () => {
         await homepage.goToReportSection();
     });
@@ -478,7 +360,7 @@ test('Validation of Report for sorting of report columns by phone,city of Ezclai
     await test.step(' Generate Report With Selecting with different Filters', async () => {
         const startDate ='2021-01-01';
         const endDate = '2025-12-31';
-        await ezclaimpayreceiptpage.generateReportSpecificPeriod(startDate,endDate,"","5454");
+        await ezclaimpayreceiptpage.generateReportSpecificPeriod(startDate,endDate,"","");
        
     });
 
@@ -494,24 +376,149 @@ test('Validation of Report for sorting of report columns by phone,city of Ezclai
      });
 })
 
+test('Validation of Report for sorting transaction Date Ezclaim Pay Receipt Report', async ({ page }) => {
+
+    const loginpage = new LoginPage(page);
+    const homepage = new HomePage(page);
+    const reportpage = new ReportPage(page);
+    const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
+    
+    await test.step('Go to report Section', async () => {
+        await homepage.goToReportSection();
+    });
+   
+    await test.step('Go to report Section', async () => {
+        await reportpage.clickOnSpecificReport(reportName);
+    });
+
+    await test.step(' Generate Report With Selecting with different Filters', async () => {
+        const startDate ='2021-01-01';
+        const endDate = '2025-12-31';
+        await ezclaimpayreceiptpage.generateReportSpecificPeriod(startDate,endDate,"","");
+       
+    });
+
+    await test.step('Verify the and sorting transaction by transaction Date', async () => {
+       await ezclaimpayreceiptpage.gotoTransactionForSpecificPatient("Andrew, Wagner");
+       const transactionDateData = await ezclaimpayreceiptpage.getTransactionData("transactionDate")
+       await ezclaimpayreceiptpage.sortTransactionByColumnName("transactionDate");
+       const sortedTransactionDateData = await ezclaimpayreceiptpage.getTransactionData("transactionDate");
+       const expectedTransactionDate = transactionDateData.sort((a, b) =>new Date(a).getTime() - new Date(b).getTime());
+       expect(sortedTransactionDateData).toStrictEqual(expectedTransactionDate);
+    });
+    
+})
+
+
+test('Validation of Report for sorting Card entry Method Ezclaim Pay Receipt Report', async ({ page }) => {
+
+    const loginpage = new LoginPage(page);
+    const homepage = new HomePage(page);
+    const reportpage = new ReportPage(page);
+    const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
+  
+    
+    await test.step('Go to report Section', async () => {
+        await homepage.goToReportSection();
+    });
+   
+    await test.step('Go to report Section', async () => {
+        await reportpage.clickOnSpecificReport(reportName);
+    });
+
+    await test.step(' Generate Report With Selecting with different Filters', async () => {
+        const startDate ='2021-01-01';
+        const endDate = '2025-12-31';
+        await ezclaimpayreceiptpage.generateReportSpecificPeriod(startDate,endDate,"","");
+       
+    });
+
+    await test.step('Verify the and sorting transaction by Card entry Method', async () => {
+       await ezclaimpayreceiptpage.gotoTransactionForSpecificPatient("Andrew, Wagner");
+       const LocalCardEntryData = await ezclaimpayreceiptpage.getTransactionData("cardEntryMethod")
+       await ezclaimpayreceiptpage.sortTransactionByColumnName("cardEntryMethod");
+       const sortedLocalCardEntryData = await ezclaimpayreceiptpage.getTransactionData("cardEntryMethod");
+       //const expectedLocalCardEntryData = LocalCardEntryData.sort();
+       expect(sortedLocalCardEntryData).toContain("Manual Entry Card Not Present");
+    });
+    
+})
+
+
+test('Validation of Report for sorting Name Of the Account Ezclaim Pay Receipt Report', async ({ page }) => {
+
+    const loginpage = new LoginPage(page);
+    const homepage = new HomePage(page);
+    const reportpage = new ReportPage(page);
+    const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
+   
+    await test.step('Go to report Section', async () => {
+        await homepage.goToReportSection();
+    });
+   
+    await test.step('Go to report Section', async () => {
+        await reportpage.clickOnSpecificReport(reportName);
+    });
+
+    await test.step(' Generate Report With Selecting with different Filters', async () => {
+        const startDate ='2021-01-01';
+        const endDate = '2025-12-31';
+        await ezclaimpayreceiptpage.generateReportSpecificPeriod(startDate,endDate,"","");
+       
+    });
+
+    await test.step('Verify the and sorting transaction by Name of Account Method', async () => {
+       await ezclaimpayreceiptpage.gotoTransactionForSpecificPatient("Andrew, Wagner");
+       //const nameOfAccountData = await ezclaimpayreceiptpage.getTransactionData("nameOfAccount")
+       await ezclaimpayreceiptpage.sortReportByColumnName("nameOfAccount");
+       const sortedNameOfAccountData = await ezclaimpayreceiptpage.getTransactionData("nameOfAccount");
+       expect(sortedNameOfAccountData[0]).toContain("No Note 203");
+    });
+    
+})
+
+
+test('Validation of Report for sorting based On Approval Number Ezclaim Pay Receipt Report', async ({ page }) => {
+
+    const loginpage = new LoginPage(page);
+    const homepage = new HomePage(page);
+    const reportpage = new ReportPage(page);
+    const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
+
+ 
+    await test.step('Go to report Section', async () => {
+        await homepage.goToReportSection();
+    });
+   
+    await test.step('Go to report Section', async () => {
+        await reportpage.clickOnSpecificReport(reportName);
+    });
+
+    await test.step(' Generate Report With Selecting with different Filters', async () => {
+        const startDate ='2021-01-01';
+        const endDate = '2025-12-31';
+        await ezclaimpayreceiptpage.generateReportSpecificPeriod(startDate,endDate,"","");
+       
+    });
+
+    await test.step('Verify the and sorting transaction by Approval Number', async () => {
+       await ezclaimpayreceiptpage.gotoTransactionForSpecificPatient("Andrew, Wagner");
+       const approvalNumberData = await ezclaimpayreceiptpage.getTransactionData("approvalNumber")
+       await ezclaimpayreceiptpage.sortTransactionByColumnName("approvalNum")
+       const sortedNameOfAccountData = await ezclaimpayreceiptpage.getTransactionData("approvalNumber");
+       const expectedApprovalNumbers = sortedNameOfAccountData.sort();
+       expect(approvalNumberData).toEqual(expectedApprovalNumbers);
+    });
+    
+})
+
 test('Validation of Report for search the transaction for non-existing transactionID from the Pay Receipt Report', async ({ page }) => {
 
     const loginpage = new LoginPage(page);
     const homepage = new HomePage(page);
     const reportpage = new ReportPage(page);
     const ezclaimpayreceiptpage = new EzclaimPayReportPage(page);
-    const userName = process.env.USER_NAME;
-    const pasword = process.env.PASSWORD;
-    const reportName = "EZClaim Pay Receipt";
-   
-    await test.step('Go to URL', async () => {
-        await loginpage.goto();
-    });
-
-    await test.step('Login using credentials', async () => {
-        await loginpage.login(userName,pasword);
-    });
-    
+ 
     await test.step('Go to report Section', async () => {
         await homepage.goToReportSection();
     });

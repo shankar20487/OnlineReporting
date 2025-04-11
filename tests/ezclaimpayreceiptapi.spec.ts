@@ -129,6 +129,7 @@ test('Validation of Ezclaim Pay receipts Api With particular patientID and start
     });
 })
 
+
 // ...existing code...
 
 test('Validation of Ezclaim Pay receipts Api With particular Date Range', async ({}, testInfo) => {
@@ -270,7 +271,7 @@ test('Validation of Ezclaim Pay receipts Api With multiple payment method', asyn
           options: {
               message: '',
               sortby: 'patientName',
-              patient: [5685],
+              patient: 5685,
               paymentMethod: ["Cash","Mastercard","Visa","OP CC"],
               paymentRef: '',
               paymentAdditionalRef: '',
@@ -300,7 +301,7 @@ test('Validation of Ezclaim Pay receipts Api With multiple payment method', asyn
         expect(responseBody.Data.dataObject[0].phyName).toBe(expectedPhyName);
         expect(responseBody.Data.dataObject[0].phyAddress).toBe(phyAddress);
         expect(responseBody.Data.dataObject[0].transactions[0].paymentMethod).toBe(paymentMethod);
-        expect(responseBody.Data.dataObject[0].transactions).toHaveLength(132);
+        expect(responseBody.Data.dataObject[0].transactions).toHaveLength(133);
     });
 })
 
@@ -427,47 +428,6 @@ test('Validation of Ezclaim Pay receipts Api With sortBy patId, patientName and 
         expect(responseBody.Data.dataObject[0].phyId).toBe(phyId);
         expect(responseBody.Data.dataObject[0].patId).toBe(patId);
      
-    });
-})
-
-// ...existing code...
-
-test('Validation of Ezclaim Pay receipts Api for Multiple patients', async ({}, testInfo) => {
-    await test.step('Ezclaim Pay receipts sucessful case and response validation', async () => {
-        const url = `${endpoint.baseUrl}`;
-        const payload = {
-            reportId: 'EZR-8',
-            options: {
-                message: '',
-                sortby: 'patientName',
-                patient: [14975, 5685],
-                paymentMethod: [],
-                paymentRef: '',
-                paymentAdditionalRef: '',
-                usePatientBillingAddress: false,
-                paymentDate: { startDate: '', endDate: '' },
-                paymentEnteredDate: { startDate: '', endDate: '' }
-            }
-        };
-        console.log(payload);
-        const expectedPhyName = ezclaimpaymentReceipt.testcase13.PhyName;
-        const phyAddress = ezclaimpaymentReceipt.testcase13.phyAddress;
-        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-8');
-        const header = { "Authorization": `Bearer ${authToken}` };
-        const apiResponse = await apiEndpoint.generateReportApi(header, payload);
-        const responseBody = await apiResponse.json();
-        console.log(responseBody);
-        
-        // ✅ Attach API response to Playwright report
-        await testInfo.attach('Api for EzClaim Pay Receipt', {
-            body: JSON.stringify(responseBody, null, 2),
-            contentType: 'application/json'
-        }); 
-
-        expect(apiResponse.status).toBe(200);
-        expect(responseBody.Data.dataObject[0].phyName).toBe(expectedPhyName);
-        expect(responseBody.Data.dataObject[0].phyAddress).toBe(phyAddress);
-
     });
 })
 

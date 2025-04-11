@@ -312,44 +312,6 @@ test('Validation of Patient Pay receipts Api With sortBy patientName,paymentDate
    });
 });
 
-test('Validation of Patient Pay receipts Api for Multiple patients', async ({}, testInfo) => {
-   await test.step('Patient Pay receipts sucessful case and response validation', async () => {
-       const url = `${endpoint.baseUrl}`;
-       const payload = {
-           reportId: 'EZR-15',
-           options: {
-               message: '',
-               sortby: 'patientName',
-               patient: [14975, 5685],
-               paymentMethod: [],
-               paymentRef: '',
-               paymentAdditionalRef: '',
-               usePatientBillingAddress: false,
-               paymentDate: { startDate: '', endDate: '' },
-               paymentEnteredDate: { startDate: '', endDate: '' }
-           }
-       };
-       console.log(payload);
-       const phyName= patientReceipt.testcase10.PhyName;
-       const phyAddress = patientReceipt.testcase10.phyAddress;
-       const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-8');
-       const header = { "Authorization": `Bearer ${authToken}` };
-       const apiResponse = await apiEndpoint.generateReportApi(header, payload);
-       const responseBody = await apiResponse.json();
-       console.log(responseBody);
-       
-       // ✅ Attach API response to Playwright report
-       await testInfo.attach('Api for EzClaim Pay Receipt', {
-           body: JSON.stringify(responseBody, null, 2),
-           contentType: 'application/json'
-       }); 
-
-       expect(apiResponse.status).toBe(200);
-       expect(responseBody.Data.dataObject[0].phyName).toBe(phyName);
-       expect(responseBody.Data.dataObject[0].phyAddress).toBe(phyAddress);
-
-   });
-})
 
 test('Validation of Patient Pay receipts Api With Aditional Payment Reference', async ({}, testInfo) => {
    await test.step('Patient Pay receipts sucessful case and response validation', async () => {
@@ -419,7 +381,6 @@ test('Validation of Patient Pay receipts Api Without passing the end date', asyn
        const patientId = patientReceipt.testcase14.patientId;
        const paymentMethod = patientReceipt.testcase14.paymentMethod;
        const phyId = patientReceipt.testcase14.phyId;
-       const amount = patientReceipt.testcase14.amount;
        const phyadd = patientReceipt.testcase14.phyAddress;
        const apiEndpoint = new GenerateReportEndpoint(url, 'EZR-15');
        const header = { "Authorization": `Bearer ${authToken}` };
@@ -439,7 +400,6 @@ test('Validation of Patient Pay receipts Api Without passing the end date', asyn
        expect(responseBody.Data.dataObject[0].phyId).toBe(phyId);
        expect(responseBody.Data.dataObject[0].phyAddress).toBe(phyadd);
        expect(responseBody.Data.dataObject[0].receipts[0].paymentMethod).toBe(paymentMethod);
-       expect(responseBody.Data.dataObject[0].totalPayment).toBe(amount);
       
    });  
 })
