@@ -16,7 +16,10 @@
     "testcase3":{
      "startDate": "2015-01-31",
      "endDate": "2025-03-31",
-     "patientId": 5685
+     "patientId": 5685,
+     "patientId1":1,
+     "patientId2":3,
+     "patientId3":4
     },
     "testcase4":{
      "startDate": "2015-01-31",
