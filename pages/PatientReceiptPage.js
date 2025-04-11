@@ -2,7 +2,7 @@
 const { expect } = require('@playwright/test');
 
 // Create class
-exports.EzclaimPayReportPage = class EzclaimPayReportPage {
+exports.PatientReceiptPage = class PatientReceiptPage {
     /**
      * @param {import('@playwright/test').Page} page
      */
@@ -34,6 +34,21 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
         await element.click();
     }
 
+    
+
+    async VerifySpecificPatientInReportSection(patientName) {
+        await this.page.waitForTimeout(2000);
+        await this.page.getByRole('gridcell', { name: `${patientName}` }).scrollIntoViewIfNeeded();
+        const isVisble = await this.page.getByRole('gridcell', { name: `${patientName}` }).isVisible()
+        expect(isVisble).toBe(true);
+        await this.page.waitForTimeout(2000);
+        const count = await this.page.locator("//table[@class='dx-datagrid-table dx-datagrid-table-fixed']/tbody/tr[@class='dx-row dx-data-row']").count();
+        console.log(count);
+        return count;
+        
+       
+    }
+
     async searchPatient(patientName) {
         await this.page.waitForTimeout(2000);
         await this.page.getByRole('region', { name: 'General' }).getByRole('button').click();
@@ -41,9 +56,15 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
         await this.page.getByRole('textbox', { name: 'Search in the data grid' }).fill(patientName);
     }
 
-    async selectandCancelPatient(isSelect) {
+    async selectandCancelPatient(isSelect,patientName='') {
         if (isSelect) {
-            await this.page.getByRole('gridcell', { name: 'api with Patient_Note' }).first().click();
+            
+            await this.page.getByRole('region', { name: 'General' }).getByRole('button').click();
+            await this.page.waitForTimeout(2000);
+            await this.page.getByRole('textbox', { name: 'Search in the data grid' }).click();
+            await this.page.getByRole('textbox', { name: 'Search in the data grid' }).fill('Wagner');
+            await this.page.getByRole('textbox', { name: 'Search in the data grid' }).press('Enter');
+             await this.page.getByRole('gridcell', { name: `${patientName}` }).first().click();
             await this.page.getByRole('button', { name: 'OK' }).click();
         } else {
             await this.page.getByRole('gridcell', { name: 'api with Patient_Note' }).first().click();
@@ -61,12 +82,13 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
         await this.page.getByRole('button', { name: 'Page 1' }).click();
     }
     async VerifySpecificPatientInReportandDownloadToPdf(patientName) {
+       
         await this.page.getByRole('textbox', { name: 'Search in the data grid' }).first().click();
         await this.page.getByRole('textbox', { name: 'Search in the data grid' }).first().fill(patientName);
         await this.page.getByRole('textbox', { name: 'Search in the data grid' }).first().press('Enter');
-        await this.page.getByRole('gridcell', { name: patientName }).click();
+        await this.page.getByRole('gridcell', { name: patientName }).nth(1).click();
         await this.page.waitForTimeout(2000);
-        await this.page.getByRole('gridcell', { name: 'Expand' }).locator('div').click();
+        await this.page.getByRole('gridcell', { name: 'Expand' }).locator('div').nth(1).click();
         
         
         const downloadPromise = this.page.waitForEvent('download');
@@ -99,12 +121,16 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
         await this.page.waitForTimeout(2000);
        
             await this.message.fill('Testing');
-            await this.paymentDate.click();
-            await this.page.getByRole('option', { name: 'Custom', exact: true }).click();
-            await this.page.locator('#mat-input-7').click();
-            await this.page.locator('#mat-input-7').fill(startDate);
-            await this.page.locator('#mat-input-8').click();
-            await this.page.locator('#mat-input-8').fill(endDate);
+            
+            //
+           await this.page.getByRole('combobox', { name: 'Payment Date ALL' }).locator('svg').click();
+           await this.page.getByRole('option', { name: 'Custom' }).click();
+           await this.page.locator('#mat-input-6').click();
+           await this.page.locator('#mat-input-6').fill(startDate);
+           await this.page.locator('#mat-input-7').click();
+           await this.page.locator('#mat-input-7').fill(endDate);
+
+            //
             await this.page.getByRole('region', { name: 'Payment' }).locator('svg').click();
             await this.page.getByRole('option', { name: 'CC', exact: true }).locator('mat-pseudo-checkbox').click();
             await this.page.getByRole('option', { name: 'Cash' }).locator('mat-pseudo-checkbox').click();
@@ -116,11 +142,10 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
             await this.page.locator('.cdk-overlay-backdrop').click();
             await this.page.getByRole('combobox', { name: 'Payment Entered Date ALL' }).locator('svg').click();
             await this.page.getByRole('option', { name: 'Custom' }).click();
+            await this.page.locator('#mat-input-8').click();
+            await this.page.locator('#mat-input-8').fill(startDate);
             await this.page.locator('#mat-input-9').click();
-            await this.page.locator('#mat-input-9').fill(startDate);
-            await this.page.waitForTimeout(2000);
-            await this.page.locator('#mat-input-10').click();
-            await this.page.locator('#mat-input-10').fill(endDate);
+            await this.page.locator('#mat-input-9').fill(endDate);
             await this.page.getByRole('textbox', { name: 'Ref #' }).click();
             await this.page.getByRole('textbox', { name: 'Ref #' }).fill(transactionID);
             await this.page.getByRole('textbox', { name: 'Addl. Ref. #' }).click();
@@ -137,9 +162,9 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
         await this.page.getByRole('textbox', { name: 'Search in the data grid' }).first().click();
         await this.page.getByRole('textbox', { name: 'Search in the data grid' }).first().fill(patientName);
         await this.page.getByRole('textbox', { name: 'Search in the data grid' }).first().press('Enter');
-        await this.page.getByRole('gridcell', { name: patientName }).click();
+        await this.page.getByRole('gridcell', { name: patientName }).nth(1).click();
         await this.page.waitForTimeout(2000);
-        await this.page.getByRole('gridcell', { name: 'Expand' }).locator('div').click();
+        await this.page.getByRole('gridcell', { name: 'Expand' }).locator('div').nth(1).click();
         await this.page.getByRole('button', { name: 'Page 1'}).scrollIntoViewIfNeeded();
        }
         await this.page.waitForTimeout(2000);
@@ -164,7 +189,7 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
         
     }
 
-    async VerifySpecificTransactionDetailsByTransactionId(patientName,transactionID) {
+    async VerifySpecificTransactionDetailsByTransactionId(patientName) {
         let transactionId
         await this.page.getByRole('textbox', { name: 'Search in the data grid' }).first().click();
         await this.page.getByRole('textbox', { name: 'Search in the data grid' }).first().fill(patientName);
@@ -174,12 +199,11 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
         await this.page.getByRole('gridcell', { name: 'Expand' }).locator('div').click();
         await this.page.getByRole('button', { name: 'Page 1'}).scrollIntoViewIfNeeded();
         await this.page.waitForTimeout(2000);
-        await this.page.locator('//div/input[@placeholder="Search..."]').nth(1).fill(transactionID);
-        await this.page.waitForTimeout(2000);
-        const isavaiable = await this.page.locator('//tr[@class="dx-row dx-data-row dx-column-lines"]/td[6]').isVisible()
+     
+        const isavaiable = await this.page.locator('//tr[@class="dx-row dx-data-row dx-column-lines"]/td[2]').isVisible()
             
         if(isavaiable){
-            transactionId= await this.page.locator('//tr[@class="dx-row dx-data-row dx-column-lines"]/td[6]').first().textContent();
+            transactionId= await this.page.locator('//tr[@class="dx-row dx-data-row dx-column-lines"]/td[2]').first().textContent();
             console.log(transactionId);
             return transactionId;
         }
@@ -199,10 +223,7 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
         await this.page.getByRole('gridcell', { name: 'Expand' }).locator('div').click();
         await this.page.getByRole('button', { name: 'Page 1'}).scrollIntoViewIfNeeded();
         await this.page.waitForTimeout(2000);
-        await this.page.locator('//div/input[@placeholder="Search..."]').nth(1).fill(addInfo);
-        await this.page.waitForTimeout(2000);
-        const addInfomation= await this.page.locator('//tr[@class="dx-row dx-data-row dx-column-lines"]/td[2]').first().textContent();
-        
+        const addInfomation= await this.page.locator('//tr[@class="dx-row dx-data-row dx-column-lines"]/td[3]').first().textContent();
         console.log(addInfomation);
         return addInfomation;
         
@@ -216,16 +237,18 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
         }
         else if (columnName =='address'){
             await this.page.getByText('Address').nth(1).click();
+            await this.page.waitForTimeout(2000);
             await this.page.getByText('Address').nth(1).click();
         }
         else if (columnName =='phone'){
             await this.page.getByRole('columnheader', { name: 'Column Phone' }).click();
+            await this.page.waitForTimeout(2000);
             await this.page.getByRole('columnheader', { name: 'Column Phone' }).click();
         }
         else{
-            await this.page.getByText('City, State & Zip').click();
+            await this.page.getByText('Total Payment').click();
             await this.page.waitForTimeout(2000);
-            await this.page.getByText('City, State & Zip').click();
+            
             
         }
     }
@@ -244,18 +267,33 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
         }
         else if (columnName =='phone'){
             await this.page.waitForTimeout(2000);
-            columnValue = await this.page.locator('//div/table/tbody/tr[@class="dx-row dx-data-row"]/td[5]').first().textContent();
+            columnValue = await this.page.locator('//div/table/tbody/tr[@class="dx-row dx-data-row"]/td[4]').first().textContent();
             return columnValue;
         }
         else{
             await this.page.waitForTimeout(2000);
-            columnValue = await this.page.locator('//div/table/tbody/tr[@class="dx-row dx-data-row"]/td[4]').first().textContent();
+            columnValue = await this.page.locator('//div/table/tbody/tr[@class="dx-row dx-data-row"]/td[5]').first().textContent();
             return columnValue;
         }
     }
 
-    async gotoTransactionForSpecificPatient(patientName){
+    async getTransctionDetails(columnName){
+        const collectedData = [];
+        if(columnName ==='transactionDate')
+        {
+            const ageCells = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[1]");
+            const rows = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[1]").count();
+            console.log(rows);
+             for (let i = 0; i < rows; i++) {
+                 const cellText = await ageCells.nth(i).innerText();
+                 console.log(`Row ${i + 1} Age:`, cellText);
+                 collectedData.push(cellText);
+               }
+        }
+        return collectedData;
+    }
 
+    async gotoTransactionForSpecificPatient(patientName){
         await this.page.getByRole('textbox', { name: 'Search in the data grid' }).first().click();
         await this.page.getByRole('textbox', { name: 'Search in the data grid' }).first().fill(patientName);
         await this.page.getByRole('textbox', { name: 'Search in the data grid' }).first().press('Enter');
@@ -266,155 +304,9 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
         await this.page.waitForTimeout(2000);
 
     }
-
-    async sortTransactionByColumnName(columnName){
-       
-
-        if(columnName==='transactionDate'){
-            await this.page.getByRole('columnheader', { name: 'Column Transaction Date' }).click();
-        }
-        else if (columnName ==='accountLast'){
-            await this.page.getByRole('columnheader', { name: 'Column Account Last' }).click();
-            
-        }
-        else if (columnName ==='paymentMethod'){
-            await this.page.getByLabel('Column Payment Method').getByText('Payment Method').click();
-        }
-        else if(columnName === 'cardEntryMethod'){
-            await this.page.getByRole('columnheader', { name: 'Column Card Entry Method' }).click();
-        }
-        else if (columnName ==='nameOnAccount'){
-            await this.page.getByRole('columnheader', { name: 'Column Name On Account' }).click();
-        }
-        else if(columnName ==='transactionId'){
-            await this.page.getByRole('columnheader', { name: 'Column Transaction ID' }).click();
-        }
-        else if(columnName === 'hostReponseCode'){
-            await this.page.getByRole('columnheader', { name: 'Column Host Response Code' }).click();
-        }
-        else if(columnName === 'approvalNum'){
-            await this.page.getByRole('columnheader', { name: 'Column Approval Number' }).click();
-            await this.page.getByRole('columnheader', { name: 'Column Approval Number' }).click();
-        }
-        else if(columnName === 'transactionType'){
-            await this.page.getByRole('columnheader', { name: 'Column Transaction Type' }).click();
-        }
-        else{
-            await this.page.getByRole('columnheader', { name: 'Column Amount' }).click();
-            
-        }
-    }
-
-    async getTransactionData(columnName){
-
-        const collectedData = [];
-
-        
-           if(columnName ==='transactionDate'){
-            const ageCells = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[1]");
-            const rows = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[1]").count();
-            console.log(rows);
-             for (let i = 0; i < rows; i++) {
-                 const cellText = await ageCells.nth(i).innerText();
-                 console.log(`Row ${i + 1} Age:`, cellText);
-                 collectedData.push(cellText);
-               }
-           }
-           else if (columnName ==='accountLast4digit'){
-            const ageCells = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[2]");
-            const rows = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[2]").count();
-            console.log(rows);
-             for (let i = 0; i < rows; i++) {
-                 const cellText = await ageCells.nth(i).innerText();
-                 console.log(`Row ${i + 1} Age:`, cellText);
-                 collectedData.push(cellText);
-               }
-           }
-           else if (columnName ==='paymentMethod'){
-            const ageCells = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[3]");
-            const rows = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[3]").count();
-            console.log(rows);
-             for (let i = 0; i < rows; i++) {
-                 const cellText = await ageCells.nth(i).innerText();
-                 console.log(`Row ${i + 1} Age:`, cellText);
-                 collectedData.push(cellText);
-               }
-           }
-           else if (columnName ==='cardEntryMethod'){
-            const ageCells = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[4]");
-            const rows = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[4]").count();
-            console.log(rows);
-             for (let i = 0; i < rows; i++) {
-                 const cellText = await ageCells.nth(i).innerText();
-                 console.log(`Row ${i + 1} Age:`, cellText);
-                 collectedData.push(cellText);
-               }
-           }
-           else if (columnName ==='nameOfAccount'){
-            const ageCells = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[5]");
-            const rows = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[5]").count();
-            console.log(rows);
-             for (let i = 0; i < rows; i++) {
-                 const cellText = await ageCells.nth(i).innerText();
-                 console.log(`Row ${i + 1} Age:`, cellText);
-                 collectedData.push(cellText);
-               }
-           }
-           else if (columnName ==='transctionId'){
-            const ageCells = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[6]");
-            const rows = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[6]").count();
-            console.log(rows);
-             for (let i = 0; i < rows; i++) {
-                 const cellText = await ageCells.nth(i).innerText();
-                 console.log(`Row ${i + 1} Age:`, cellText);
-                 collectedData.push(cellText);
-               }
-           }
-           else if (columnName ==='hostRespCode'){
-            const ageCells = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[7]");
-            const rows = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[7]").count();
-            console.log(rows);
-             for (let i = 0; i < rows; i++) {
-                 const cellText = await ageCells.nth(i).innerText();
-                 console.log(`Row ${i + 1} Age:`, cellText);
-                 collectedData.push(cellText);
-               }
-           }
-           else if (columnName ==='approvalNumber'){
-            const ageCells = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[8]");
-            const rows = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[8]").count();
-            console.log(rows);
-             for (let i = 0; i < rows; i++) {
-                 const cellText = await ageCells.nth(i).innerText();
-                 console.log(`Row ${i + 1} Age:`, cellText);
-                 collectedData.push(cellText);
-               }
-           }
-           else if (columnName ==='tranactionType'){
-            const ageCells = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[9]");
-            const rows = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[9]").count();
-            console.log(rows);
-             for (let i = 0; i < rows; i++) {
-                 const cellText = await ageCells.nth(i).innerText();
-                 console.log(`Row ${i + 1} Age:`, cellText);
-                 collectedData.push(cellText);
-               }
-           }
-           else{
-            const ageCells = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[10]");
-            const rows = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[10]").count();
-            console.log(rows);
-             for (let i = 0; i < rows; i++) {
-                 const cellText = await ageCells.nth(i).innerText();
-                 console.log(`Row ${i + 1} Age:`, cellText);
-                 collectedData.push(cellText);
-               }
-
-           }
-          
-            return collectedData;
-    }
+}
    
-};
+   
+
 
 

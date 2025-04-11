@@ -20,8 +20,13 @@ exports.LoginPage = class LoginPage {
     }
 
     async goto(){
-        await this.page.setViewportSize({width : 1366, height: 768})
-        await this.page.goto(process.env.URL);
+       
+
+        const maxRetries = 3;
+        let attempt = 0;
+         let success = false;
+         await this.page.setViewportSize({width : 1366, height: 768})
+         await this.page.goto(process.env.URL,{ waitUntil: 'load' });
     }
 
     async login(param1,param2){

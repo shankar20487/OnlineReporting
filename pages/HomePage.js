@@ -18,6 +18,15 @@ exports.HomePage = class HomePage {
         this.reportOption =   page.locator('a')
     }
 
+    async changeCompanyProfile(dbName)
+    {
+        await this.page.locator('//input[@data-testid="ez-select-company"]').click();
+        await this.page.locator('//input[@data-testid="ez-select-company"]').fill('Iteris');
+        await this.page.locator('//input[@data-testid="ez-select-company"]').press('Enter');
+        await this.page.locator('//input[@name="Iteris"]').click();
+        await this.page.getByRole('button', { name: 'Change company file' }).click();
+
+    }
     async goToReportSection(){
         await this.page.waitForTimeout(2000);
         await this.homeLogo.isVisible();
