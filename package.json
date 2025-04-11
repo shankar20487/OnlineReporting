@@ -8,10 +8,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.49.1",
+    "@playwright/test": "^1.50.1",
     "@types/node": "^20.14.10",
     "allure-commandline": "^2.32.2",
-    "allure-playwright": "^3.1.0"
+    "allure-playwright": "^3.2.0"
   },
   "dependencies": {
     "ajv": "^6.12.6",
@@ -20,6 +20,7 @@
     "dotenv": "^16.4.5",
     "json-schema-generator": "^2.0.6",
     "mssql": "^11.0.1",
+    "pdf-parse": "^1.1.1",
     "pg": "^8.13.3"
   }
 }
