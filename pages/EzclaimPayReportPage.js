@@ -24,7 +24,7 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
             await this.page.getByRole('option', { name: 'Past', exact: true }).click();
             await this.page.getByRole('region', { name: 'Payment' }).locator('svg').click();
             await this.page.getByRole('option', { name: 'CC', exact: true }).locator('mat-pseudo-checkbox').click();
-            await this.page.getByRole('option', { name: 'Cash' }).locator('mat-pseudo-checkbox').click();
+            await this.page.getByRole('option', { name: 'Cash' }).locator('mat-pseudo-checkbox').nth(0).click();
             await this.page.getByRole('option', { name: 'Mastercard' }).locator('mat-pseudo-checkbox').click();
             await this.page.locator('.cdk-overlay-backdrop').click();
         }
@@ -107,12 +107,10 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
             await this.page.locator('#mat-input-8').fill(endDate);
             await this.page.getByRole('region', { name: 'Payment' }).locator('svg').click();
             await this.page.getByRole('option', { name: 'CC', exact: true }).locator('mat-pseudo-checkbox').click();
-            await this.page.getByRole('option', { name: 'Cash' }).locator('mat-pseudo-checkbox').click();
+            //await this.page.getByRole('option', { name: 'Cash' }).locator('mat-pseudo-checkbox').click();
             await this.page.getByRole('option', { name: 'Mastercard' }).locator('mat-pseudo-checkbox').click();
             await this.page.waitForTimeout(2000);
-            await this.page.getByRole('option', { name: 'EFT' }).locator('mat-pseudo-checkbox').click();
-            await this.page.getByRole('option', { name: 'OP CC' }).locator('mat-pseudo-checkbox').click();
-            await this.page.waitForTimeout(2000);
+   
             await this.page.locator('.cdk-overlay-backdrop').click();
             await this.page.getByRole('combobox', { name: 'Payment Entered Date ALL' }).locator('svg').click();
             await this.page.getByRole('option', { name: 'Custom' }).click();

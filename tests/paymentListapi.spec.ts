@@ -328,7 +328,7 @@ test('Validation of payment List for filtering based on Sort By patientOrPayerNa
       
        const apiEndpoint = new GenerateReportEndpoint(url,'EZR-18');
        const header = { "Authorization": `Bearer ${authToken}`}
-       const payload = await apiEndpoint.generatePaymentListPayloadV2("","","","","","","",sortby)
+       const payload = await apiEndpoint.generatePaymentListPayload("","",false,"","",1,"",sortby)
     
        console.log(payload);
        const apiResponse = await apiEndpoint.generateReportApi(header,payload);
@@ -400,7 +400,7 @@ test('Validation of payment List for filtering based on payment Source as Payer'
       
        const apiEndpoint = new GenerateReportEndpoint(url,'EZR-18');
        const header = { "Authorization": `Bearer ${authToken}`}
-       const payload = await apiEndpoint.generatePaymentListPayloadV2("","","","",paymentSource,'','',sortby)
+       const payload = await apiEndpoint.generatePaymentListPayloadV2("",16,"","",paymentSource,'','',sortby)
     
        console.log(payload);
        const apiResponse = await apiEndpoint.generateReportApi(header,payload);

@@ -1,0 +1,61 @@
+{
+   "testcase1":{
+    "startDate": "2015-01-31",
+    "endDate": "2025-01-31",
+    "deletetedItems": "Payer",
+    "deletedDescription":"APIPayer"
+   
+
+   },
+   "testcase2":{
+    "deletetedItems": "Patient",
+    "deletedDescription":"asd, qwe"
+    
+   },
+    "testcase3":{
+    "deletetedItems": "Payment",
+    "deletedDescription":"Patient - Jo, API 04/19/2024 $55.55 "
+     
+    },
+    "testcase4":{
+       "deletetedItems": "Claim",
+       "computer":"API"
+   
+    },
+    "testcase5":{
+       "deletetedItems": "Service_Line",
+       "computer":"API"
+    
+    },
+    "testcase6":{
+     "deletetedItems": "",
+   "deletetedItems1":"Patient",
+   "deletetedItems2":"Payer"
+    
+    },
+    "testcase7":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "deletetedItems": "Patient",
+     "computer":"API"
+     
+    },
+    "testcase8":{
+     "startDate": "2015",
+     "endDate": "2025-01-31",
+     "patientId": "1"
+    },
+    "testcase9":{
+     "startDate": "2015-01-31",
+     "endDate": "2025",
+     "patientId": "1"
+    },
+    "testcase10":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "patientClassification":"InvalidGroup"
+    }
+
+ }
+  

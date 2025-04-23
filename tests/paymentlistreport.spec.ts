@@ -224,7 +224,7 @@ test('Validation of Report generation and with filter With Different Payment Met
     });
 
     await test.step(' Generate Report Without Selecting  Filters', async () => {
-        await paymentListReportPage.fillPaymentMethodDetails("Check");
+        await paymentListReportPage.fillPaymentMethodDetails("Cash");
         await paymentListReportPage.generateReport();
        
     });
@@ -417,7 +417,7 @@ test('Validation of Report generation with filter Payer and hidedisbustment fals
 })
 
 
-test.only('Validation of Report for sorting of report columns by name,adress of PaymentList Report', async ({ page }) => {
+test('Validation of Report for sorting of report by columns of PaymentList Report', async ({ page }) => {
 
     const homepage = new HomePage(page);
     const reportpage = new ReportPage(page);
@@ -476,9 +476,103 @@ test.only('Validation of Report for sorting of report columns by name,adress of 
      });
      await test.step('Verify the and sorting by Payment Note', async () => {
         await paymentListReportPage.sortReportByColumnName("note");
-        const patientName = await paymentListReportPage.getsortedValueByColumnName("note");
+     const patientName = await paymentListReportPage.getsortedValueByColumnName("note");
         expect(patientName).toBe("TestNote18")
      });
 })
 
 
+test('Validation of Report using group by of the PaymentList Report', async ({ page }) => {
+
+    const homepage = new HomePage(page);
+    const reportpage = new ReportPage(page);
+    const paymentListReportPage = new PaymentListReportPage(page);
+   
+   
+    await test.step('Go to report Section', async () => {
+        await homepage.goToReportSection();
+    });
+   
+    await test.step('Go to report Section', async () => {
+        await reportpage.clickOnSpecificReport(reportName);
+    });
+
+    await test.step(' Generate Report With Selecting any Filters', async () => {
+        await paymentListReportPage.fillGroupByDetails("Payment Source");
+          await paymentListReportPage.generateReport();
+       
+    });
+
+    await test.step('Verify the Dispaly should be based on group By', async () => {
+      
+        const expectedColumn = "Payment Source:";
+        const actualcolumn = await paymentListReportPage.validateOnlineDisplayGroupBy();
+        expect(actualcolumn).toContain(expectedColumn);
+    });
+
+    await test.step(' Generate Report With Selecting any Filters', async () => {
+        await paymentListReportPage.fillGroupByDetails("Payment Date",2,"Payment Source");
+          await paymentListReportPage.generateReport();
+       
+    });
+
+    await test.step('Verify the Dispaly should be based on group By', async () => {
+      
+        const expectedColumn = "Payment Date:";
+        const actualcolumn = await paymentListReportPage.validateOnlineDisplayGroupBy();
+        expect(actualcolumn).toContain(expectedColumn);
+    });
+
+    await test.step(' Generate Report With Selecting any Filters', async () => {
+        await paymentListReportPage.fillGroupByDetails("Payment Month Year",2,"Payment Date");
+          await paymentListReportPage.generateReport();
+       
+    });
+
+    await test.step('Verify the Dispaly should be based on group By', async () => {
+      
+        const expectedColumn = "Payment Month Year:";
+        const actualcolumn = await paymentListReportPage.validateOnlineDisplayGroupBy();
+        expect(actualcolumn).toContain(expectedColumn);
+    });
+
+    await test.step(' Generate Report With Selecting any Filters', async () => {
+        await paymentListReportPage.fillGroupByDetails("Payment Method",2,"Payment Month Year");
+          await paymentListReportPage.generateReport();
+       
+    });
+
+    await test.step('Verify the Dispaly should be based on group By', async () => {
+      
+        const expectedColumn = "Method:";
+        const actualcolumn = await paymentListReportPage.validateOnlineDisplayGroupBy();
+        expect(actualcolumn).toContain(expectedColumn);
+    });
+
+
+    await test.step(' Generate Report With Selecting any Filters', async () => {
+        await paymentListReportPage.fillGroupByDetails("Patient Name",2,"Payment Method");
+          await paymentListReportPage.generateReport();
+       
+    });
+
+    await test.step('Verify the Dispaly should be based on group By', async () => {
+      
+        const expectedColumn = "Patient Or Payer Name:";
+        const actualcolumn = await paymentListReportPage.validateOnlineDisplayGroupBy();
+        expect(actualcolumn).toContain(expectedColumn);
+    });
+
+    await test.step(' Generate Report With Selecting any Filters', async () => {
+        await paymentListReportPage.fillGroupByDetails("Patient Classification",2,"Patient Name");
+          await paymentListReportPage.generateReport();
+       
+    });
+
+    await test.step('Verify the Dispaly should be based on group By', async () => {
+      
+        const expectedColumn = "Patient Classification:";
+        const actualcolumn = await paymentListReportPage.validateOnlineDisplayGroupBy();
+        expect(actualcolumn).toContain(expectedColumn);
+    });
+});

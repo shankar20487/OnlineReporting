@@ -136,9 +136,7 @@ exports.PatientReceiptPage = class PatientReceiptPage {
             await this.page.getByRole('option', { name: 'Cash' }).locator('mat-pseudo-checkbox').click();
             await this.page.getByRole('option', { name: 'Mastercard' }).locator('mat-pseudo-checkbox').click();
             await this.page.waitForTimeout(2000);
-            await this.page.getByRole('option', { name: 'EFT' }).locator('mat-pseudo-checkbox').click();
-            await this.page.getByRole('option', { name: 'OP CC' }).locator('mat-pseudo-checkbox').click();
-            await this.page.waitForTimeout(2000);
+         
             await this.page.locator('.cdk-overlay-backdrop').click();
             await this.page.getByRole('combobox', { name: 'Payment Entered Date ALL' }).locator('svg').click();
             await this.page.getByRole('option', { name: 'Custom' }).click();

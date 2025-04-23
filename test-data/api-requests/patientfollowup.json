@@ -1,0 +1,68 @@
+{
+   "testcase1":{
+    "startDate": "2015-01-31",
+    "endDate": "2025-01-31",
+    "patientId": "1",
+   "patientName": "BROOKS, PATIENT D",
+    "patientPhone": "9512346841"
+
+   },
+   "testcase2":{
+    "startDate": "2023-01-31",
+    "endDate": "2025-01-31",
+     "patientId": "1",
+     "patientName": "BROOKS, PATIENT D",
+     "totalPatBalance":"36.55"
+    
+   },
+    "testcase3":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-03-31",
+     "patientId": "1",
+     "minStatements":"2"
+    },
+    "testcase4":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+      "patientId": "1",
+     "agedDays":"10"
+   
+    },
+    "testcase5":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "patientClassification":"TEST GROUP"
+    },
+    "testcase6":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 16438,
+     "patientPhone":"9512346841"
+    
+    },
+    "testcase7":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": "1235685"
+     
+    },
+    "testcase8":{
+     "startDate": "2015",
+     "endDate": "2025-01-31",
+     "patientId": "1"
+    },
+    "testcase9":{
+     "startDate": "2015-01-31",
+     "endDate": "2025",
+     "patientId": "1"
+    },
+    "testcase10":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "patientClassification":"InvalidGroup"
+    }
+
+ }
+  

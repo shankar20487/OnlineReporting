@@ -113,9 +113,9 @@ export default class GenerateReportEndpoint {
         return payload;
     }
 
-    async generatePaymentListPayload(groupBy = '', minimumBalance, hideDisbursementDetails = false, minimumPayment, patientClassification = '', patient = 1, paymentMethod = '') {
+    async generatePaymentListPayload(groupBy = '', minimumBalance, hideDisbursementDetails = false, minimumPayment, patientClassification = '', patient = 1, paymentMethod = '',sortby='') {
         let apiPayload;
-
+        if(sortby === ''){
         apiPayload = {
             reportId: this.reportName,
             options: {
@@ -137,9 +137,35 @@ export default class GenerateReportEndpoint {
                 SortBy: ""
             }
         };
+        
+        }
+        else{
+
+            apiPayload = {
+                reportId: this.reportName,
+                options: {
+                    groupBy: groupBy,
+                    hideDisbursementDetails: hideDisbursementDetails,
+                    message: "",
+                    minimumBalance: minimumBalance,
+                    minimumPayment: minimumPayment,
+                    patientClassification: [patientClassification],
+                    patient:  '',
+                    payer: '',
+                    paymentEnteredDate: "",
+                    paymentDate: "",
+                    paymentMethod: [paymentMethod],
+                    paymentNote: "",
+                    paymentSource: "",
+                    paymentRef: "",
+                    paymentAdditionalRef: "",
+                    SortBy: sortby || ""
+                }
+            };
+           
+        }
         return apiPayload;
     }
-
     async generatePaymentListPayloadV2(patient, payer, startDate, endDate, paymentSource, paymentRef,paymentAdditionalRef,sortby='',hideDisbursementDetails=false,paymentNote='') {
         let apiPayload;
         if (patient === '') {
@@ -200,7 +226,221 @@ export default class GenerateReportEndpoint {
             paymentAdditionalRef: paymentAdditionalRef,
             SortBy: sortby || ""
         };
-        return apiPayload;
+       
     }
-      }       
+    return apiPayload;
+      }   
+      
+      async generatePatientFollowupPayload(isdefault =false,minimumStatement='',agedDays='',minimumBalance='',patient='',patientClassification='',startDate='',endDate='') {
+        let apiPayload;
+
+        if(isdefault === true){
+            apiPayload = {
+                reportId: this.reportName,
+                options: {
+                    minStatements:"",
+                    agedDays: "",
+                    minimumBalance: "",
+                    patient: "",
+                    patientClassification: "",
+                    serviceDate: ""
+                    
+                }
+            };
+        }
+        else {
+            apiPayload = {
+                reportId: this.reportName,
+                options: {
+                    minStatements:minimumStatement,
+                    agedDays:agedDays,
+                    minimumBalance: minimumBalance,
+                    patient: patient,
+                    patientClassification: [patientClassification],
+                    serviceDate: {
+                        startDate: startDate || "",
+                        endDate: endDate || ""
+                    },
+                }
+            };
+        }   
+        return apiPayload;
+  }
+   
+  async generatePayloadClaimStatement(patient, startDate, endDate, sortby = '', claimId = "",minimumBalance='',claimBillingProvider=1) {
+        let payload;
+        if (patient !== '') {
+            payload = {
+                reportId: this.reportName,
+                options: {
+                    patient: patient ||"",
+                    claimBillingProvider:  [],
+                    minimumBalance:"",
+                    claimID:claimId,
+                    serviceDate: "",
+                    sortby: sortby || ""
+                }
+            };
+        }  else {
+            if(claimBillingProvider === 1) {
+                claimBillingProvider = [];
+            }
+            else{
+                claimBillingProvider = [claimBillingProvider];
+            }
+            if(startDate === '' && endDate === '') {
+                payload = {
+                    reportId: this.reportName,
+                    options: {
+                        patient: "" ,
+                        claimBillingProvider: []  || claimBillingProvider ,
+                        minimumBalance: minimumBalance || "",
+                        claimID:claimId || "",
+                        serviceDate: "",
+                        sortby: sortby || ""
+                    }
+                };
+            }
+            else{
+                payload = {
+                    reportId: this.reportName,
+                    options: {
+                        patient: "" ,
+                        claimBillingProvider: []  || claimBillingProvider ,
+                        minimumBalance: minimumBalance || "",
+                        claimID: "",
+                        serviceDate: {
+                            startDate: startDate,
+                            endDate: endDate
+                        },
+                        sortby: sortby || ""
+                    }
+                }; 
+
+            }
+           
+        }
+        return payload;
+
+ } 
+ 
+ async generateDeleteRecordPayload(startDate, endDate, deletedItemType=["Payer"]) {
+    let payload
+    if(startDate === '' && endDate === '') {
+        payload = {
+            reportId: this.reportName,
+            options: {
+                deletedItemType: deletedItemType,
+                deletedDate: {
+                    startDate: "",
+                    endDate: ""
+                }
+            }
+        };
+    }
+    else{
+        payload = {
+            reportId: this.reportName,
+            options: {
+                deletedItemType: "",
+                deletedDate: {
+                    startDate: startDate || "",
+                    endDate: endDate || ""
+                }
+            }
+        };
+    }
+   return payload;
+ 
+}
+
+async generateInsuranceFollowupPayload(isdefault =false,payer=1,facility,patient=1,patientClassification='',payerClassification='',startDate='',endDate='') {
+    let apiPayload;
+
+    if(isdefault === true){
+        apiPayload = {
+            reportId: this.reportName,
+            options: {
+                payer:"",
+                facility:"",
+                patient: "",
+                patientClassification: "",
+                payerClassification: "",
+                serviceDate: {
+                    startDate: startDate || "",
+                    endDate: endDate || ""
+                
+            }
+        }
+    }
+}
+    else {
+        if(payer === 1 || payer === '') {
+            payer = [];
+        }
+        else{
+            payer = [payer];
+        }
+        if(patient === 1 || patient === '') {
+            patient = "";
+        }
+      
+        if(facility === 1 || facility === '') {
+            facility = [];
+        }
+        else{
+            facility = [facility];
+        }
+        apiPayload = {
+            reportId: this.reportName,
+            options: {
+                payer: "" ||payer, 
+                facility: "" || facility ,
+                patient: "" || patient ,
+                patientClassification: "" || [patientClassification] ,
+                payerClassification: "" || [payerClassification] ,
+                serviceDate: ""
+            }
+                
+        };
+   }   
+    return apiPayload;
+  }
+
+  async generateTransactionListPayload(startDate, endDate, transactionType = [''], patient = '') {
+    let payload;
+    if (transactionType !== '') {
+        payload = {
+            reportId: this.reportName,
+            options: {
+                transactionType:transactionType|| "",
+                groupBy: "",
+                hideDetail:true,
+                patient: patient || "",
+                transactionDate: {
+                    startDate: startDate || "",
+                    endDate: endDate || ""
+                },
+                createdDate: {
+                    startDate: startDate || "",
+                    endDate: endDate || ""
+                }
+            }
+        };
+    } else {
+        payload = {
+            reportId: this.reportName,
+            options: {
+                transactionType: "",
+                groupBy: "",
+                hideDetail:false,
+                patient: "",
+                transactionDate: "",
+                createdDate: ""
+            }
+        };
+    }
+    return payload;
+  }
+
 }

@@ -22,6 +22,21 @@ exports.PaymentListReportPage = class PaymentListReportPage {
         await element.click();
     }
 
+    async fillGroupByDetails(groupBy,num=1,previousGroupBy='') {
+      
+        if(groupBy !== '' && num === 1){
+        
+            await this.page.getByRole('combobox', { name: 'Group By Select' }).locator('path').click();
+            await this.page.getByRole('option', { name: `${groupBy}` }).locator('span').click();
+            
+            }
+        if(num === 2){      
+            await this.page.getByRole('combobox', { name: `Group By ${previousGroupBy}` }).locator('path').click();
+            await this.page.getByRole('option', { name: `${groupBy}` }).locator('span').click();
+        }
+
+    }
+
     async fillGeneralReportDetails(groupBy,paymentSource='Patient',patientName='',payerName='',minimumPaymentAmount=0,minimumRemainingBalace=0,hideDetail=true) {
         if(groupBy !== ''){
         await this.page.getByRole('combobox', { name: 'Group By Select' }).locator('path').click();
@@ -156,6 +171,7 @@ exports.PaymentListReportPage = class PaymentListReportPage {
             const text = parsed.text;
 
             // === Header Validation ===
+         
            
             const hasHeader = text.includes(expectedHeader);
             const matchingTotalAmount = text.includes(expectedTotalAmount);
@@ -296,9 +312,18 @@ exports.PaymentListReportPage = class PaymentListReportPage {
         const disbustmentAmount = await this.page.locator("//tr[@class='dx-row dx-data-row dx-column-lines']/td[3]").textContent();
         return disbustmentAmount
     }
+
+   
+    async validateOnlineDisplayGroupBy(){
+
+        await this.page.waitForTimeout(2000);
+        await this.page.locator("(//table/tbody/tr[1]/td[2])[2]").waitFor({state:'visible', timeout: 10000})
+        const columnHeader = await this.page.locator("(//table/tbody/tr[1]/td[2])[2]").first().textContent();
+        return columnHeader;
+
+    }   
+
 }
-   
-   
 
 
 

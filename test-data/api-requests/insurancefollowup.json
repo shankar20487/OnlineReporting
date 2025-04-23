@@ -1,0 +1,71 @@
+{
+   "testcase1":{
+    "startDate": "2015-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 17639,
+   "payName": "AETNA HEALTH PLANS",
+    "balance": 100.00
+
+   },
+   "testcase2":{
+      "startDate": "2015-01-31",
+      "endDate": "2025-01-31",
+      "patientId": 17639,
+     "payName": "AETNA HEALTH PLANS",
+      "balance": 100.00
+    
+   },
+    "testcase3":{
+      "payName": "American Family Insurance",
+      "payerId" : 40,
+      "balance": 100.00,
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase4":{
+      "payName": "American Family Insurance",
+      "payerId" : 40,
+      "balance": 100.00,
+      "patientClassification":"TEST GROUP"
+   
+    },
+    "testcase5":{
+    "payName": "American Family Insurance",
+      "payerId" : 40,
+      "payerClassification":"TEST GROUP",
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase6":{
+   "payName": "American Family Insurance",
+      "payerId" : 40,
+     "patientId": 5685,
+     "facility": 37,
+      "patientClassification":"TEST GROUP"
+    
+    },
+    "testcase7":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 29,
+     "patientClassification":"GENERAL GROUP"
+     
+    },
+    "testcase8":{
+    "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 100000
+    
+    },
+    "testcase9":{
+     "startDate": "2015-01-31",
+     "endDate": "2025",
+     "patientId": 5685
+    },
+    "testcase10":{
+     "startDate": "2015",
+     "endDate": "2025-01-31",
+     "patientId": 5685
+    }
+  
+
+ }
+  
