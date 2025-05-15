@@ -1,0 +1,92 @@
+{
+   "testcase1":{
+    "amount1": 18708.3100,
+   "transactionType1": "Charges",
+    "transactionType2":"Contract Adj",
+    "transactionType3":"Disbursement",
+   "amount2":-544.0000
+
+   },
+   "testcase2":{
+    "amount1": 2120.0000,
+     "amount2":-55.0000,
+   "transactionType1": "Charges",
+   "patientClassification":"MEDICARE"
+   },
+    "testcase3":{
+      "amount1": 300.0000,
+      "transactionType1": "Charges",
+       "transactionType2":"Contract Adj",
+       "transactionType3":"Disbursement",
+      "amount2":-45.0000,
+      "claimReferringProvider":4
+    },
+    "testcase4":{
+      "amount1": 18708.31,
+      "transactionType1": "Charges",
+       "transactionType2":"Contract Adj",
+       "transactionType3":"Disbursement",
+      "amount2":-544,
+      "claimPrimaryPayer":1
+   
+    },
+    "testcase5":{
+      "amount1": 1800,
+      "transactionType1": "Charges",
+     "claimRenderingProvider":6
+     
+    },
+    "testcase6":{
+      "amount1": 10780.16,
+      "transactionType1": "Charges",
+    "claimBillingProvider":6
+      
+    },
+    "testcase7":{
+      "amount1": 3536.0000,
+      "transactionType1": "Charges",
+    "claimFacility":37
+    },
+    "testcase8":{
+      "amount1": 151.3000,
+      "transactionType1": "Charges",
+     "claimOrderingProvider": 20
+    },
+    "testcase9":{
+      "amount1": 435,
+      "transactionType1": "Charges",
+     "userName": "admin"
+    },
+    "testcase10":{
+      "amount1": 18020.31,
+      "transactionType1": "Charges",
+      "startDate": "2015-01-31",
+     "endDate": "2025-01-31"
+    },
+    "testcase11":{
+      "amount1": 18708.31,
+      "transactionType1": "Charges"
+     
+    },
+    "testcase12":{
+      "amount1": 18708.31,
+      "transactionType1": "Charges",
+      "userName": "admin"
+    },
+    "testcase13":{
+      "amount1": 18708.31,
+      "transactionType1": "Charges",
+      "userName": "admin",
+       "startDate": "2015",
+      "endDate": "2025-01-31"
+    },
+    "testcase14":{
+      "amount1": 18708.31,
+      "transactionType1": "Charges",
+      "userName": "admin",
+      "startDate": "2015-01-31",
+      "endDate": "2025"
+    }
+   
+ }
+  

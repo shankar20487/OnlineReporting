@@ -1,0 +1,67 @@
+{
+   "testcase1":{
+   "patientId": "5685",
+   "patientName": null,
+    "transRef": "2149708444",
+    "transPatientPmtAmount": 227011.7900
+
+   },
+   "testcase2":{
+   "patientId": "5685",
+   "patientName": "Andrew, Wagner",
+    "transRef": "2149708444",
+    "transPatientPmtAmount":203.0000
+    
+   },
+    "testcase3":{
+      "transRef": "11111122222",
+      "transPayerPmtAmount":130.0000,
+      "transType":"payer pmts",
+      "payer" :"MEDICARE"
+    },
+    "testcase4":{
+      "transRef": "2149708444",
+      "transPatientPmtAmount":203.0000,
+      "transType":"payer pmts",
+      "payer" :"Andrew, Wagner"
+   
+    },
+    "testcase5":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+      "transType":"payer pmts",
+      "payer" :"Andrew, Wagner",
+      "transRef": "2149708444",
+      "transPatientPmtAmount":203.0000
+    },
+    "testcase6":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+      "transType":"payer pmts",
+      "payer" :"Andrew, Wagner",
+      "transRef": "2149708444",
+      "transPatientPmtAmount":203.0000
+    
+    },
+    "testcase7":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": "1235685"
+     
+    },
+    "testcase8":{
+     "startDate": "2015",
+     "endDate": "2025-01-31",
+     "patientId": 5685
+    },
+    "testcase9":{
+     "startDate": "2015-01-31",
+     "endDate": "2025",
+     "patientId": 5685
+    }
+  
+
+ }
+  

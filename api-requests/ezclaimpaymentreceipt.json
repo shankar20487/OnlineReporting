@@ -1,0 +1,155 @@
+{
+   "testcase1":{
+    "startDate": "2015-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 14975,
+    "PhyName":"HEALTH CLINIC ",
+    "phyAddress":"100 MAIN STREET SUITE 200 ROCHESTER, MI 555554444",
+    "paymentMethod":"Mastercard",
+    "transactionID":"2166302950",
+    "amount":124.23
+
+   },
+   "testcase2":{
+    "startDate": "2015-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 14975,
+    "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+    "paymentMethod":"Mastercard",
+    "amount":44
+   },
+    "testcase3":{
+     "startDate": "2025-01-31",
+     "endDate": "2025-03-31",
+     "patientId": 5685,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+    "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307",
+    "paymentMethod":"Mastercard",
+    "transactionID":"2280889079",
+    "amount":5
+    },
+    "testcase4":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+    "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307"
+    },
+    "testcase5":{
+     "startDate": "2021-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+      "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+    "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307",
+     "paymentMethod":"Mastercard"
+    },
+    "testcase6":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+   "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307",
+    "paymentMethod":"Visa"
+    },
+    "testcase7":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+     "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307",
+      "paymentMethod":"OP CC"
+    },
+    "testcase8":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+    "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307",
+     "paymentMethod":"Mastercard"
+    },
+    "testcase9":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "patientId1": 1,
+     "patientId2": 3,
+     "patientId3": 8
+    },
+    "testcase10":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "patientId1": 1,
+     "patientId2": 3,
+     "patientId3": 8
+    },
+    "testcase11":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685
+    },
+    "testcase12":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "phyId": 6,
+     "patId": 1
+    },
+    "testcase13":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+      "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+    "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307"
+    },
+    "testcase14":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "lastFourDigit": "5454",
+     "phyId": 66
+     
+    },
+    "testcase15":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "transactionID":"2149708444",
+     "phyId": 66
+    },
+    "testcase16":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 12345
+    },
+    "testcase17":{
+     "startDate": "2015-01-31",
+     "endDate": "",
+     "patientId": 5685,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+    "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307",
+    "paymentMethod":"Mastercard"
+    },
+    "testcase18":{
+     "startDate": "",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+     "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307",
+    "paymentMethod":"Mastercard"
+    },
+    "testcase19":{
+     "startDate": "2015",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "PhyName":"HEALTH CLINIC "
+    },
+    "testcase20":{
+     "startDate": "2015-01-31",
+     "endDate": "2025",
+     "patientId": 5685,
+     "PhyName":"HEALTH CLINIC "
+    }
+
+ }
+  

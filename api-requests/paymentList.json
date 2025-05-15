@@ -1,0 +1,162 @@
+{
+  "testcase1": {
+    "patientId": 1,
+    "payId": 0,
+    "patientOrPayerName": "BROOKS, PATIENT D",
+    "paymentMethod": "Mastercard",
+    "patClassification": "DR BROOKS",
+    "isPayer": false,
+    "monthYearDisplay": "May 2021"
+  },
+  "testcase2": {
+    "patientId": 1,
+    "payId": 0,
+    "patientOrPayerName": "BROOKS, PATIENT D",
+    "paymentMethod": "CASH",
+    "patClassification": "DR BROOKS",
+    "isPayer": false,
+    "monthYearDisplay": "May 2021"
+  },
+  "testcase3": {
+    "patientId": 1,
+    "payId": 0,
+    "patientOrPayerName": "BROOKS, PATIENT D",
+    "paymentMethod": "CASH",
+    "patClassification": "DR BROOKS",
+    "isPayer": false,
+    "monthYearDisplay": "May 2021",
+    "minimumBalance": 100
+  },
+  "testcase4": {
+    "patientId": 1,
+    "payId": 0,
+    "patientOrPayerName": "BROOKS, PATIENT D",
+    "patClassification": "DR BROOKS",
+    "isPayer": false,
+    "monthYearDisplay": "May 2021",
+    "minimumPaymentAmount": 100
+  },
+  "testcase5": {
+    "patientId": 5685,
+    "payId": 0,
+    "patientOrPayerName": "Andrew, Wagner",
+    "patClassification": "TEST GROUP"
+  },
+  "testcase6": {
+    "patientId": 0,
+    "payId": 16,
+    "patientOrPayerName": "ALLSTATE",
+    "patClassification": "NONE"
+  },
+  "testcase7": {
+    "startDate": "2015-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 5685,
+    "payId": 0,
+    "patientOrPayerName": "Andrew, Wagner",
+    "patClassification": "TEST GROUP"
+  },
+  "testcase8": {
+    "startDate": "2021-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 5685,
+    "payId": 0,
+    "patientOrPayerName": "Andrew, Wagner",
+    "patClassification": "TEST GROUP",
+    "paymentRef": "2153889665"
+  },
+  "testcase9": {
+    "startDate": "2021-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 5685,
+    "payId": 0,
+    "patientOrPayerName": "Andrew, Wagner",
+    "patClassification": "TEST GROUP",
+    "paymentAddRef": "...5454"
+  },
+  "testcase10": {
+    "startDate": "2021-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 5685,
+    "payId": 0,
+    "patientOrPayerName": "BROOKS, PATIENT D",
+    "patClassification": "TEST GROUP",
+    "hideDisbustment": true
+  },
+  "testcase11": {
+    "startDate": "2021-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 0,
+    "payId": 0,
+    "patientOrPayerName": "BROOKS, PATIENT D",
+    "patClassification": "TEST GROUP",
+    "sortby": "patientOrPayerName,pmtDate",
+    "pmtDate": "2021-01-05T00:00:00"
+  },
+  "testcase12": {
+    "startDate": "2021-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 0,
+    "payId": 0,
+    "patientOrPayerName": "BROOKS, PATIENT D",
+    "patClassification": "TEST GROUP",
+    "sortby": "patientOrPayerName,pmtDate",
+    "pmtDate": "2021-01-05T00:00:00",
+    "hideDisbustment": true,
+    "pmtId1": 220,
+    "pmtId2": 221
+  },
+  "testcase13": {
+    "startDate": "2021-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 0,
+    "payId": 16,
+    "paymentSource":"Payer",
+    "sortby":"patientOrPayerName",
+    "patientOrPayerName":"ALLSTATE"
+  },
+  "testcase14": {
+    "startDate": "2021-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 0,
+    "payId": 0,
+    "paymentSource":"Payer",
+    "sortby":"patientOrPayerName",
+    "patientOrPayerName":"aaa",
+    "hideDisbusementDetails": true
+  },
+  "testcase15": {
+    "startDate": "2021-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 5685,
+    "payId": 0,
+    "paymentSource":"Patient",
+    "sortby":"patientOrPayerName",
+    "patientOrPayerName":"aaa",
+    "paymentNote": ""
+  },
+  "testcase16": {
+    "startDate": "2015-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 56851
+  },
+  "testcase17": {
+    "startDate": "2015-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 5685,
+    "payId":100
+  },
+  "testcase18": {
+    "startDate": "2015",
+    "endDate": "2025-01-31",
+    "patientId": 5685
+  },
+  "testcase19": {
+    "startDate": "2015-01-31",
+    "endDate": "2025",
+    "patientId": 5685
+   
+   
+  }
+ 
+}

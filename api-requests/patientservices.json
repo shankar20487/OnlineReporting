@@ -1,0 +1,210 @@
+{
+"testcase1":{
+  "patientId": 5685,
+ "patientName": "DAVIES111, JASON",
+  "patientClassification":"TEST GROUP",
+  "totCharges": 211.0000
+
+ },
+  "testcase2":{
+ "patientId": 5685,
+ "patientName": "Andrew, Wagner",
+  "patientClassification":"TEST GROUP",
+  "totCharges": 1140.0000
+  },
+  "testcase3":{
+      "patientId": 5685,
+      "patientName": "SAMPLE, PATIENT D",
+      "payer":1,
+      "patientClassification":"GENERAL GROUP",
+      "totCharges": 300.0000 
+  },
+    "testcase4":{
+      "patientId": 5685,
+      "patientName": "SAMPLE, PATIENT D",
+      "patientClassification":"GENERAL GROUP",
+      "totCharges": 300.0000 
+   
+    },
+    "testcase5":{
+    "patientName": "SMITH, JOHN D",
+    "accountStartWith": "1002",
+    "balance":170.0000,
+    "patientClassification":"MEDICARE"
+    },
+    "testcase6":{
+      "patientId": 7085,
+      "patientName": "DAVIES111, JASON",
+      "balance":211.000,
+      "activeStatus":1,
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase7":{
+      "patientId": 5685,
+     "patientName": "DAVIES111, JASON",
+      "balance":211.000,
+      "activeStatus":0
+      
+    },
+    "testcase8":{
+      "patientId": 5685,
+      "patientName": "SECONDARY, PATIENT S",
+      "balance":300,
+      "city":"CITY",
+      "patientClassification":"SECONDARY"
+    },
+    "testcase9":{
+      "patientId": 5685,
+      "patientName": "Doe, Jane",
+      "balance":85.0000,
+      "state":"CA",
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase10":{
+      "patientId": 5685,
+      "patientName": "SMITH, JOHN D",
+      "balance":170.0000,
+      "zip":12345,
+      "patientClassification":"MEDICARE"
+    },
+    "testcase11":{
+      "patientId": 5685,
+      "patientName": "SMITH, JOHN D",
+      "balance":1800.0000,
+      "claimRender":6,
+      "patientClassification":"MEDICARE"
+    },
+    "testcase12":{
+      "patientId": 5685,
+      "patientName": "DAVIES, JASON",
+      "balance":151.3000,
+      "facility":16,
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase13":{
+     "patientId": 5685,
+      "patientName": "DAVIES111, JASON",
+      "balance":211.0000,
+      "claimBillingProvider":6,
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase14":{
+     "patientId": 5685,
+      "patientName": "BROOKS, PATIENT D",
+      "balance":100,
+      "invoiceStartWith":"1",
+      "patientClassification":"DR BROOKS"
+    },
+    "testcase15":{
+      "patientId": 5685,
+      "patientName": "BROOKS, PATIENT D",
+      "balance":100,
+      "primaryDiaStartWith":"1",
+      "patientClassification":"DR BROOKS"
+    },
+    "testcase16":{
+     "patientId": 5685,
+      "patientName": "Westen, Michael",
+      "balance":1.0000,
+      "productCodeStartsWith":"1",
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase17":{
+     "patientId": 5685,
+      "patientName": "Baskets, Chip",
+      "balance":0.0000,
+     "procedureCodeStartsWith":"1",
+     "patientClassification":"TEST GROUP"
+      
+    },
+    "testcase18":{
+      "patientId": 5685,
+      "patientName": "DAVIES111, JASON",
+      "balance":211.0000,
+     "hasInsurance":true,
+     "patientClassification":"TEST GROUP"
+    },  
+    "testcase19":{
+      "patientId": 5685,
+      "patientName": "INSTITUTIONAL, PATIENT",
+      "balance":1640.0000,
+      "serviceLineMinBalance":100,
+      "patientClassification":"GENERAL GROUP"
+    },
+    "testcase20":{
+      "patientId": 5685,
+      "patientName": "INSTITUTIONAL, PATIENT",
+      "balance":220.0000,
+      "serviceLineBalance":100,
+      "patientClassification":"GENERAL GROUP"
+      
+    },
+  "testcase21":{
+    "startDate":"2020-01-31",
+    "endDate":"2025-01-31",
+    "patientName": "BROOKS, PATIENT D",
+    "balance":850.0000,
+     "visits":12
+    },
+  "testcase22":{  
+    "startDate":"2020-01-31",
+    "endDate":"2025-01-31",
+    "patientName": "BROOKS, PATIENT D",
+    "balance":850.0000,
+     "visits":12
+  },
+  "testcase23":{
+    "startDate":"2020-01-31",
+    "endDate":"2025-01-31",
+    "patientName": "BROOKS, PATIENT D",
+    "balance":850.0000,
+     "visits":12
+  },
+  "testcase24":{
+    "startDate":"2020-01-31",
+    "endDate":"2025-01-31",
+    "patientName": "BROOKS, PATIENT D",
+    "balance":850.0000,
+     "visits":12
+  },
+  "testcase25":{
+    "startDate":"01/03/1950",
+    "endDate":"01/03/1970",
+    "patientName": "BROOKS, PATIENT D",
+    "balance":1150.0000,
+     "visits":18
+  },
+  "testcase26":{
+    "hideDetails":true,
+    "groupBy":"None",
+    "patientName": "",
+    "balance":18708.31,
+     "visits":12
+  },
+  "testcase27":{
+    "hideDetails":true,
+    "groupBy":"patientClassification",
+    "patientName": "TEST GROUP",
+    "balance":8827.1000,
+     "visits":12
+  },
+  "testcase28":{
+    "hideServiceLineDetail":true,
+    "groupBy":"patientClassification",
+    "patientName": "DAVIES111, JASON",
+    "balance":211.0000,
+     "visits":12
+  },
+  "testcase29":{
+  "startDate":"2000",
+    "endDate":"01/03/1970",
+    "patientName": "TEST GROUP",
+    "balance":8827.1000,
+     "visits":12
+  },
+  "testcase30":{
+    "startDate":"2000-01-01",
+    "endDate":"1970",
+     "visits":12
+  }
+}

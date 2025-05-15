@@ -1,0 +1,164 @@
+{
+   "testcase1":{
+    "startDate": "2015-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 14975,
+    "phyId":6,
+    "phyAddress":"100 MAIN STREET SUITE 200 ROCHESTER, MI 555554444",
+    "paymentMethod":"Mastercard"
+    
+
+   },
+   "testcase2":{
+    "startDate": "2015-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 14975,
+    "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+    "paymentMethod":"Mastercard",
+    "patientName":"Andrew, Wagner",
+    "paymentAmount":203
+   },
+    "testcase3":{
+     "startDate": "2021-01-31",
+     "endDate": "2025-03-31",
+     "patientId": 14975,
+     "PhyName":"HEALTH CLINIC ",
+    "phyAddress":"100 MAIN STREET SUITE 200 ROCHESTER, MI 555554444",
+     "paymentAmount":124.23
+    },
+    "testcase4":{
+     "startDate": "2024-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+    "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307"
+    },
+    "testcase5":{
+     "startDate": "2021-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+      "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+    "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307",
+     "paymentMethod":"Mastercard"
+    },
+    "testcase6":{
+     "startDate": "2021-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+   "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307",
+    "paymentMethod":"Visa"
+    },
+    "testcase7":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+     "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307",
+      "paymentMethod":"CASH"
+    },
+    "testcase8":{
+     "startDate": "2021-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "patientId1": 1,
+     "patientId2": 3,
+     "patientId3": 8
+    },
+    "testcase9":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "patientId1": 5685,
+     "patientId2": 16576,
+     "paymentAmount": 203
+    },
+    "testcase10":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "patientId1": 1,
+     "PhyName": "EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+     "phyAddress": "337 S MAIN STREET  ROCHESTER, MI 48307"
+    },
+    "testcase11":{
+     "startDate": "2021-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "transactionID":"2149708444",
+     "lastFourDigit":"..."
+
+    },
+    "testcase12":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "phyId": 66,
+     "paymentMethod": "Mastercard",
+     "lastFourDigit":"..."
+    },
+    "testcase13":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+      "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+    "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307",
+     "transactionID":"2149708444",
+     "phyId": 66
+    },
+    "testcase14":{
+     "startDate": "2015-01-31",
+     "endDate": "",
+     "patientId": 5685,
+     "lastFourDigit": "5454",
+     "phyId": 66,
+     "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307",
+     "paymentMethod":"Mastercard",
+     "amount": 226839.79
+     
+    },
+    "testcase15":{
+     "startDate": "",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "paymentMethod":"Mastercard",
+     "phyId": 66,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+     "amount": 203
+    },
+    "testcase16":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685
+    },
+    "testcase17":{
+     "startDate": "2015-01-31",
+     "endDate": "",
+     "patientId": 12345,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+    "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307",
+    "paymentMethod":"Mastercard"
+    },
+    "testcase18":{
+     "startDate": "2015",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM",
+     "phyAddress":"337 S MAIN STREET  ROCHESTER, MI 48307",
+    "paymentMethod":"Mastercard"
+    },
+    "testcase19":{
+     "startDate": "2015",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM"
+    },
+    "testcase20":{
+     "startDate": "2015-01-31",
+     "endDate": "2025",
+     "patientId": 5685,
+     "PhyName":"EZCLAIM MEDICAL BILLING SOFTWARE EZCLAIM"
+    }
+
+ }
+  

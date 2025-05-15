@@ -1,0 +1,68 @@
+{
+   "testcase1":{
+    "startDate": "2015-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 5685,
+    "provider": "Test Doctor",
+    "srvID": 265
+
+   },
+   "testcase2":{
+    "startDate": "2023-01-31",
+    "endDate": "2025-01-31",
+    "patientId": 5685,
+    "accountNo":"10066"
+   },
+    "testcase3":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-03-31",
+     "patientId": 5685,
+     "patientId1":1,
+     "patientId2":3,
+     "patientId3":4
+    },
+    "testcase4":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "accountNo1":"1005",
+      "accountNo2":"1000",
+      "accountNo3":"1001"
+    },
+    "testcase5":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685,
+     "accountNo":"10066"
+    },
+    "testcase6":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 30,
+     "patientClassification":"TEST GROUP",
+     "accountNo":"1024"
+    },
+    "testcase7":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 1235685,
+     "accountStartWith":"Testing3111111111111111111391991919111111111uiiuuwee112221212112211"
+    },
+    "testcase8":{
+     "startDate": "2015",
+     "endDate": "2025-01-31",
+     "patientId": 5685
+    },
+    "testcase9":{
+     "startDate": "2015-01-31",
+     "endDate": "2025",
+     "patientId": 5685
+    },
+    "testcase10":{
+     "startDate": "2015-01-31",
+     "endDate": "2025-01-31",
+     "patientId": 5685
+    }
+
+ }
+  

@@ -1,0 +1,195 @@
+{
+   "testcase1":{
+    "patientId": 1,
+   "patientName": "BROOKS, PATIENT D",
+    "claimBillingProvider":"HEALTH CLINIC",
+    "claID":27
+
+   },
+   "testcase2":{
+     "patientId": "1",
+     "patientName": "SHORTK!, EVANK!",
+    "claimBillingProvider":"Sonal Kakade",
+    "claID":1
+   },
+    "testcase3":{
+     "patientClassification": "MEDICARE",
+     "patientName": "SHORTK!, EVANK!",
+    "claimBillingProvider":"Sonal Kakade",
+    "claID":1
+    },
+    "testcase4":{
+    "patientName": "SMITH, JOHN D",
+    "claimBillingProvider":"HEALTH CLINIC",
+     "accountStartWith": "1002",
+     "patientId": "5685",
+     "claimID":"172"
+   
+    },
+    "testcase5":{
+    "patientName": "SHORTK!, EVANK!",
+    "claimBillingProvider":"Sonal Kakade",
+     "activeStatus1": "1",
+     "claimID":"172"
+     
+    },
+    "testcase6":{
+     "patientName": "SHORTK!, EVANK!",
+    "claimBillingProvider":"Sonal Kakade",
+     "activeStatus1": "0"
+    
+    },
+    "testcase7":{
+      "payer": 1,
+     "claimPrimaryPayer":"BLUE CROSS",
+     "patientName":"PEAKE, JULIA"
+    },
+    "testcase8":{
+      "payer": 1,
+      "claimPrimaryPayer":"CIGNA",
+      "patientName":"PARSONS, VICTOR",
+      "insuranceMinBalance":100
+    },
+    "testcase9":{
+      "patientName":"SHORTK!, EVANK!",
+     "claimBillSq": 0,
+     "claimBillingProvider":"Sonal Kakade"
+    },
+      "testcase10":{
+         "patientName":"SHORTK!, EVANK!",
+      "claimPrimaryPayer": 1,
+      "claimBillingProvider":"Sonal Kakade"
+      },
+      "testcase11":{
+      "patientName":"SMITH, JOHN D",
+      "claimRenderingProvider": 6,
+      "claimBillingProvider":"REFERRING MIKE"
+      },
+      "testcase12":{
+      "patientName":"LEE, KATHERINE",
+      "claimRenderingProvider": 6,
+      "claimBillingProvider":6,
+      "expectedClaimBillingProvider":"HEALTH CLINIC"
+      },
+      "testcase13":{
+      "patientName":"Westen, Michael",
+      "claimRenderingProvider": 6,
+      "claimFacility": 37,
+      "claimBillingProvider":"Nurse, Easy"
+      },
+      "testcase14":{ 
+      "patientName":"DAVIES, JASON",
+      "claimOrderingProvider": 20,
+      "claimFacility": 37,
+      "claimBillingProvider":"Bella Care Physical Therapy Inc update"
+   },
+      "testcase15":{
+      "patientName":"PARSONS, VICTOR",
+      "claimOrderingProvider": 20,
+      "claimMinBalance": 100,
+      "claimBillingProvider":"HEALTH CLINIC"
+     
+      },
+      "testcase16":{
+      "patientName":"MORRISON, JANE",
+      "claimOrderingProvider": 20,
+      "patientMinBalance": 100,
+      "claimBillingProvider":"HEALTH CLINIC"
+   },
+      "testcase17":{
+      "patientName":"SHORTK!, EVANK!",
+      "claimOrderingProvider": 20,
+      "print": "yes",
+      "claimBillingProvider":"Sonal Kakade"
+   },
+      "testcase18":{
+      "patientName":"SHORTK!, EVANK!",
+      "claimOrderingProvider": 20,
+      "exported": "yes",
+      "claimBillingProvider":"Sonal Kakade"
+   },
+      "testcase19":{
+      "patientName":"SHORTK!, EVANK!",
+      "claimOrderingProvider": 20,
+      "selfpay":"yes",
+      "claimBillingProvider":"Sonal Kakade"
+   },
+      "testcase20":{ 
+         "patientName":"SHORTK!, EVANK!",
+         "claimOrderingProvider": 20,
+         "selfpay":"no",
+         "claimBillingProvider":"Sonal Kakade"
+   },
+      "testcase21":{
+      "patientName":"PARSONS, VICTOR",
+      "claimBalance": 50,
+      "claimBillingProvider":"HEALTH CLINIC"
+   },
+      "testcase22":{
+      "patientName":"SHORTK!, EVANK!",
+      "claimOrderingProvider": 20,
+      "agedMoreThan": 30,
+      "claimBillingProvider":"Sonal Kakade"
+   },
+      "testcase23":{
+      "patientName":"PARSONS, VICTOR",
+      "claimBillingProvider":"HEALTH CLINIC",
+      "startDate": "2020-01-31",
+     "endDate": "2025-01-31"
+   },
+      "testcase24":{
+     "patientName":"SHORTK!, EVANK!",
+     "claimBillingProvider":"Sonal Kakade",
+      "startDate": "2020-01-31",
+     "endDate": "2025-01-31"
+   },
+      "testcase25":{
+      "patientName":"SHORTK!, EVANK!",
+      "claimBillingProvider":"Sonal Kakade",
+      "startDate": "2020-01-31",
+     "endDate": "2025-01-31"
+   },
+      "testcase26":{
+      "patientName":"SHORTK!, EVANK!",
+      "claimBillingProvider":"Sonal Kakade",
+      "startDate": "2020-01-31",
+     "endDate": "2025-01-31"
+   },
+     "testcase27":{
+      "patientName":"PARSONS, VICTOR",
+      "claimBillingProvider":"HEALTH CLINIC",
+      "startDate": "2020-01-31",
+     "endDate": "2025-01-31"
+   },
+      "testcase28":{
+      "patientName":"SHORTK!, EVANK!",
+      "claimBillingProvider":"Sonal Kakade",
+      "startDate": "2020-01-31",
+     "endDate": "2025-01-31"
+   },
+   "testcase29":{
+      "patientName":"PARSONS, VICTOR",
+      "claimBillingProvider":"HEALTH CLINIC",
+      "invoiceStartWith": "11"
+   },
+   "testcase30":{
+      "patientName":"SHORTK!, EVANK!",
+      "claimBillingProvider":"Sonal Kakade",
+      "shwoDetails": true
+   },
+
+     "testcase31":{
+      "patientName":"PARSONS, VICTOR",
+      "claimBillingProvider":"HEALTH CLINIC",
+      "startDate": "2020",
+     "endDate": "2025-01-31"
+   },
+   "testcase32":{
+      "patientName":"SHORTK!, EVANK!",
+      "claimBillingProvider":"Sonal Kakade",
+      "startDate": "2020-01-31",
+     "endDate": "2025"
+   }
+
+ }
+  

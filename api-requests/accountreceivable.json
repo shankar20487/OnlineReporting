@@ -1,0 +1,143 @@
+{
+"testcase1":{
+  "patientId": 5685,
+ "patientName": "Andrew, Wagner",
+  "patientClassification":"TEST GROUP",
+  "balance":1088.50
+
+ },
+  "testcase2":{
+    "patientId": "5685",
+    "patientName": "Andrew, Wagner",
+    "payer":1,
+    "patientClassification":"TEST GROUP"
+   
+  },
+    "testcase3":{
+      "patientId": "5685",
+      "patientName": "Andrew, Wagner",
+      "balance":1088.50,
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase4":{
+    "patientName": "SMITH, JOHN D",
+    "claimRenderingProvider":6,
+    "balance": 2005.00,
+    "patientId": 10,
+    "patientClassification":"MEDICARE"
+   
+    },
+    "testcase5":{
+    "patientName": "Andrew, Wagner",
+    "claimStatus": "Submitted",
+    "balance":1088.50,
+    "patientClassification":"TEST GROUP"
+    },
+    "testcase6":{
+      "patientId": 7085,
+      "patientName": "Berkman, Barry",
+      "balance":425.00,
+      "facility":41,
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase7":{
+      "patientId": 5685,
+      "patientName": "Andrew, Wagner",
+      "balance":1088.50,
+      "patientClassification":"TEST GROUP"
+      
+    },
+    "testcase8":{
+      "patientId": 5685,
+      "patientName": "Andrew, Wagner",
+      "balance":1088.50,
+      "accountStartWith":"1002",
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase9":{
+      "patientId": 5685,
+      "patientName": "Andrew, Wagner",
+      "balance":1088.50,
+      "activeStatus":"1",
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase10":{
+      "patientId": 5685,
+      "patientName": "Andrew, Wagner",
+      "balance":1088.50,
+      "activeStatus":"0",
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase11":{
+      "patientId": 5685,
+      "patientName": "APIPatientLastName, APIPatientFirstName9",
+      "balance":500,
+      "responsibleParty":0,
+      "patientClassification":" NO CLASSIFICATION"
+    },
+    "testcase12":{
+     "patientId": 5685,
+      "patientName": "Andrew, Wagner",
+      "balance":1088.50,
+      "responsibleParty":1,
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase13":{
+     "patientId": 5685,
+      "patientName": "Andrew, Wagner",
+      "balance":1088.50,
+      "responsibleParty":2,
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase14":{
+     "patientId": 5685,
+      "patientName": "Andrew, Wagner",
+      "balance":1088.50,
+      "responsibleParty":3,
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase15":{
+     "patientId": 5685,
+      "patientName": "Andrew, Wagner",
+      "balance":1088.50,
+      "startDate":"2020-01-31",
+      "endDate":"2025-01-31",
+      "patientClassification":"TEST GROUP"
+    },
+    "testcase16":{
+     "patientId": 5685,
+      "patientName": "Andrew, Wagner",
+      "balance":1088.50,
+      "startDate":"2020-01-31",
+      "endDate":"2025-01-31",
+      "calculateAgingByDOS":true,
+      "agingBalance":1088.50
+    },
+    "testcase17":{
+     "patientId": 5685,
+      "patientName": "Grand Totals:",
+      "balance":50394.76,
+     "hideDetails":true,
+     "groupBy":"none"
+      
+    },
+    "testcase18":{
+      "patientId": 5685,
+      "patientName": "Andrew, Wagner",
+      "balance":1088.50,
+     "hideDetails":true,
+     "groupBy":"PatientClassification"
+    },  
+    "testcase19":{
+      "patientId": 5685,
+      "patientName": "Andrew, Wagner",
+    "startDate":"2020",
+      "endDate":"2025-01-31"
+    },
+    "testcase20":{
+      "patientId": 5685,
+      "patientName": "Andrew, Wagner",
+    "startDate":"2020-01-31",
+      "endDate":"2025"
+    }
+  }
