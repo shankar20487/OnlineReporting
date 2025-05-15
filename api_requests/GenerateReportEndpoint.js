@@ -168,36 +168,36 @@ export default class GenerateReportEndpoint {
     }
     async generatePaymentListPayloadV2(patient, payer, startDate, endDate, paymentSource, paymentRef,paymentAdditionalRef,sortby='',hideDisbursementDetails=false,paymentNote='') {
         let apiPayload;
-        if (patient === '') {
-        apiPayload = {
-            reportId: this.reportName,
-            options: {
-                groupBy: "",
-                hideDisbursementDetails: hideDisbursementDetails || "",
-                message: "",
-                minimumBalance: "",
-                minimumPayment: "",
-                patientClassification: [],
-                patient:  '',
-                payer: [payer] || '',
-                paymentEnteredDate: {
+        if (patient === '' && payer !== '') {
+            apiPayload = {
+                reportId: this.reportName,
+                options: {
+                    groupBy: "",
+                    hideDisbursementDetails: hideDisbursementDetails || "",
+                    message: "",
+                    minimumBalance: "",
+                    minimumPayment: "",
+                    patientClassification: [],
+                    patient:  '',
+                    payer: "" ||[payer],
+                    paymentEnteredDate: {
+                        startDate: startDate,
+                        endDate: endDate
+                    }
+                },
+                paymentDate: {
                     startDate: startDate,
                     endDate: endDate
-                }
-            },
-            paymentDate: {
-                startDate: startDate,
-                endDate: endDate
-            },
-            paymentMethod: [],
-            paymentNote: paymentNote|| "",
-            paymentSource: paymentSource,
-            paymentRef: paymentRef,
-            paymentAdditionalRef: paymentAdditionalRef,
-            SortBy: sortby || ""
+                },
+                paymentMethod: [],
+                paymentNote: paymentNote|| "",
+                paymentSource: paymentSource,
+                paymentRef: paymentRef,
+                paymentAdditionalRef: paymentAdditionalRef,
+                SortBy: sortby || ""
+            };
         }
-      
-    }
+       
       else{
         apiPayload = {
             reportId: this.reportName,
@@ -209,7 +209,7 @@ export default class GenerateReportEndpoint {
                 minimumPayment: "",
                 patientClassification: [],
                 patient: patient || '',
-                payer: '',
+                payer: "",
                 paymentEnteredDate: {
                     startDate: startDate,
                     endDate: endDate
@@ -226,7 +226,7 @@ export default class GenerateReportEndpoint {
             paymentAdditionalRef: paymentAdditionalRef,
             SortBy: sortby || ""
         };
-       
+    
     }
     return apiPayload;
       }   
@@ -354,7 +354,7 @@ export default class GenerateReportEndpoint {
  
 }
 
-async generateInsuranceFollowupPayload(isdefault =false,payer=1,facility,patient=1,patientClassification='',payerClassification='',startDate='',endDate='') {
+async generateInsuranceFollowupPayload(isdefault =false,payer=1,facility,patient=1,patientClassification="",payerClassification="",startDate='',endDate='') {
     let apiPayload;
 
     if(isdefault === true){
@@ -396,8 +396,8 @@ async generateInsuranceFollowupPayload(isdefault =false,payer=1,facility,patient
             options: {
                 payer: "" ||payer, 
                 facility: "" || facility ,
-                patient: "" || patient ,
-                patientClassification: "" || [patientClassification] ,
+                patient: patient || "" ,
+                patientClassification: [patientClassification] || "" ,
                 payerClassification: "" || [payerClassification] ,
                 serviceDate: ""
             }
@@ -415,7 +415,7 @@ async generateInsuranceFollowupPayload(isdefault =false,payer=1,facility,patient
             options: {
                 transactionType:transactionType|| "",
                 groupBy: "",
-                hideDetail:true,
+                hideDetail:false,
                 patient: patient || "",
                 transactionDate: {
                     startDate: startDate || "",
@@ -433,7 +433,7 @@ async generateInsuranceFollowupPayload(isdefault =false,payer=1,facility,patient
             options: {
                 transactionType: "",
                 groupBy: "",
-                hideDetail:false,
+                hideDetail:true,
                 patient: "",
                 transactionDate: "",
                 createdDate: ""
@@ -442,5 +442,131 @@ async generateInsuranceFollowupPayload(isdefault =false,payer=1,facility,patient
     }
     return payload;
   }
+
+  async generateClaimListReportPayload(customOptions = {}) {
+    return {
+        reportId: this.reportName,
+        options: {
+            groupBy: "none",
+            groupByDisplay: "None",
+            showServiceLineDetail: false,
+            originalBillDate: "",
+            dollarZeroDate: "",
+            claimCreatedDate: "",
+            firstDOS: "",
+            lastExportedDate: "",
+            lastPrintedDate: "",
+            payer: "",
+            payerDisplay: "",
+            billToSequence: "",
+            billToSequenceDisplay: "",
+            claimRenderingProvider: "",
+            claimRenderingProviderDisplay: "",
+            claimBillingProvider: "",
+            claimBillingProviderDisplay: "",
+            facility: "",
+            facilityDisplay: "",
+            claimOrderingProvider: "",
+            claimOrderingProviderDisplay: "",
+            invoiceStartsWith: "",
+            claimMinBalance: "",
+            insuranceMinBalance: "",
+            patientMinBalance: "",
+            printed: "",
+            printedDisplay: "",
+            exported: "",
+            exportedDisplay: "",
+            selfPay: "",
+            selfPayDisplay: "",
+            claimBalanceIs: "",
+            agedMoreThan: "",
+            patientClassification: "",
+            patientClassificationDisplay: "",
+            patient: "",
+            patientDisplay: "",
+            acctStartsWith: "",
+            activeStatus: "",
+            activeStatusDisplay: "",
+            ...customOptions // Merge custom properties
+        }
+    };
+}
+
+async generateProductionSummeryPayload(customOptions = {}) {
+    return {
+        reportId: this.reportName,
+        options: {
+            transactionDate: "",
+            createdDate: "",
+            claimPrimaryPayer: "",
+            claimReferringProvider: "",
+            claimRenderingProvider: "",
+            claimBillingProvider: "",
+            facility: "",
+            claimOrderingProvider: "",
+            patientClassification: "",
+            userName: "",
+            ...customOptions // Merge custom properties
+        }
+    };
+}
+
+async generateAccountReceivablePayload(customOptions = {}) {
+    return {
+        "reportId": this.reportName,
+        "options": {
+          agingAsOfDate: "2025-05-01",
+          groupBy: "",
+          payer: "",
+          claimRenderingProvider: "",
+          claimStatus: "",
+          facility: "",
+          patientClassification: "",
+          patient: "",
+          acctStartsWith: "",
+          activeStatus: "",
+          responsibleParty: "",
+          serviceDate: "",
+         ...customOptions // Merge custom properties
+        }
+    };
+}
+
+async generatePatientServicesPayload(customOptions = {}) {
+    return {
+        "reportId": this.reportName,
+        "options": {
+            groupBy: "none",
+            originalBillDate: "",
+            dollarZeroDate: "",
+            serviceDate: "",
+            lastExportedDate: "",
+            procedureCodeStartsWith: "",
+            category: "",
+            placeOfService: "",
+            productCodeStartsWith: "",
+            hasInsurancePayment: "",
+            serviceLineMinimumBalance: "",
+            serviceLineBalance: "",
+            payer: "",
+            claimRenderingProvider: "",
+            claimReferringProvider: "",
+            facility: "",
+            claimBillingProvider: "",
+            invoiceStartsWith: "",
+            primaryDiagnosisStartsWith: "",
+            patientClassification: "",
+            patient: "",
+            acctStartsWith: "",
+            activeStatus: "",
+            birthDate: "",
+            city: "",
+            state: "",
+             zip: "",
+         ...customOptions // Merge custom properties
+        }
+    };
+}
+
 
 }

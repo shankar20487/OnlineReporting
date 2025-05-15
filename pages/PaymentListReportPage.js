@@ -160,7 +160,7 @@ exports.PaymentListReportPage = class PaymentListReportPage {
     }
     async paymentReportdDownloadToPdf(expectedHeader,expectedTotalAmount,expectedReminingBalance) {
          const downloadPromise = this.page.waitForEvent('download');
-         await this.page.getByRole('button', { name: 'Export all data to PDF' }).click();
+         await this.page.locator("//div[@aria-label='pdffile']").click();
         const download = await downloadPromise;
         const path = await download.path();
         if (path) {

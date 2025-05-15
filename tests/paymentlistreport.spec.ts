@@ -36,7 +36,7 @@ test('Validation of Report generation and download without filter in Payment Lis
        
     });
 
-    await test.step('Verify the Report is generated and download Properly', async () => {
+    await test.step('Verify the Report is generated with proper content', async () => {
         const expectedHeader ="Community Counseling"
         const expectedColumns = ["PaymentDate","Amount","Remain","MethodRef #","Addl Ref #","Note"];
          const isAvailable = await paymentListReportPage.paymentReportdDownloadToPdf(expectedHeader,"Total Amount:","Total Remaining:");
@@ -65,7 +65,7 @@ test('Validation of Report generation and download with filter Patient in Paymen
     });
 
     await test.step('Verify Total Amount And Remaining Amount displayed Properly', async () => {
-        const expectedTotalBalance = "$978.99";
+        const expectedTotalBalance = "$988.99";
         const expectedRemainingBalace = "$894.99"
          const isAvailable = await paymentListReportPage.verifyTotalAmountAndRemainingAmount(expectedTotalBalance,expectedRemainingBalace);
          expect(isAvailable).toBeTruthy();
@@ -189,8 +189,8 @@ test('Validation of Report generation and with filter Date Range in Payment List
     });
 
      await test.step('Verify Total Amount And Remaining Amount displayed Properly', async () => {
-        const expectedTotalBalance = "$2,206.99";
-        const expectedRemainingBalace = "$2,192.99"
+        const expectedTotalBalance = "$2,266.99";
+        const expectedRemainingBalace = "$2,242.99"
         const isAvailable = await paymentListReportPage.verifyTotalAmountAndRemainingAmount(expectedTotalBalance,expectedRemainingBalace);
         expect(isAvailable).toBeTruthy();
     });

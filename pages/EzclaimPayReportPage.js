@@ -70,7 +70,7 @@ exports.EzclaimPayReportPage = class EzclaimPayReportPage {
         
         
         const downloadPromise = this.page.waitForEvent('download');
-         await this.page.getByRole('button', { name: 'Export all data to PDF' }).click();
+        await this.page.locator("//div[@aria-label='pdffile']").click();
         const download = await downloadPromise;
     }
 

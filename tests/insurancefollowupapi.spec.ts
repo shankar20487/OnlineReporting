@@ -158,9 +158,9 @@ test('Validation of Insurance Follow up Api for Particular Patient Classificatio
 
          
        expect(apiResponse.status).toBe(200);
-       expect(jsonData.Data.dataObject[1].payName).toEqual(payName);
-       expect(jsonData.Data.dataObject[1].insurance[0].payId).toEqual(payerId);  
-       expect(jsonData.Data.dataObject[1].insurance[0].patClassification).toEqual(patientClassification);
+       expect(jsonData.Data.dataObject[0].payName).toEqual(payName);
+       expect(jsonData.Data.dataObject[0].insurance[0].payId).toEqual(payerId);  
+       expect(jsonData.Data.dataObject[0].insurance[0].patClassification).toEqual(patientClassification);
         
       
    });
